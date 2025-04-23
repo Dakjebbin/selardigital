@@ -27,10 +27,97 @@ section{
   margin: auto;
   width: 80%;
 }
-/* 
-.background{
-  background-image: url("./assets/stelar-1.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-} */
+
+.our-courses{
+  display: flex;
+  align-items: center;
+   width: 43%; 
+   margin-top: 30px;
+   
+}
+.our-courses hr{
+    width: 80px;
+    border: 0;
+    border-top: 1px solid black;
+    margin-right: 10px;
+}
+
+.our-courses span{
+    font-family: Inter;
+    font-size: 25px;
+    font-weight: 700;
+    line-height: 30.26px;
+    letter-spacing: 0.1em;
+}
+
+@media(max-width:768px) {
+    .our-courses{
+        width: 100%;
+    }
+    .our-courses span{
+        font-size: 25px;
+    }
+}
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+  padding: 20px;
+
+}
+
+.hero-container {
+  display: flex;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  /* border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); */
+  flex-direction: row; /* Default to row direction */
+}
+
+.description {
+  flex: 1;
+  max-width: 600px; /* Limiting the width of the description */
+  justify-content: center;
+  padding: 20px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+@media(max-width:800px) {
+  .description {
+    flex: 1;
+    max-width: 600px; /* Limiting the width of the description */
+    justify-content: center;
+    padding: 0;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* margin-top: 20px; */
+  padding: 20px 0;
+}
+
+.image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px; /* Optional: rounding the image corners */
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+  .hero-container {
+    flex-direction: column; /* Switch to column direction on smaller screens */
+  }
+}
 

@@ -1,10 +1,18 @@
 import React from "react";
 import { assets } from "../assets/assest";
+import { MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
 
 const Products = () => {
   return (
     <main>
-      <h2 className="ml-18 mb-8 text-2xl">Products</h2>
+    
+      <div className="our-courses ml-18 mb-8">
+        <MdOutlineKeyboardDoubleArrowRight
+          className="text-[#59486e] font-bold"
+          size={30}
+        />
+          <span> Products</span>
+        </div>
       <section className="flex flex-wrap gap-6 m-auto w-[90%]">
         <div className="grow basis-[200px] bg-[#23325a] px-5 py-5 rounded-tr-3xl rounded-bl-3xl">
           <div>
