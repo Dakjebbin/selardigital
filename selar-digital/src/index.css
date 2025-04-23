@@ -51,9 +51,9 @@ section{
 }
 
 @media(max-width:768px) {
-    .our-courses{
+    /* .our-courses{
         width: 100%;
-    }
+    } */
     .our-courses span{
         font-size: 25px;
     }
