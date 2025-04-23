@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap');
+@tailwind utilities;
+@import "tailwindcss";
+
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html{
+  scroll-behavior: smooth;
+}
+
+body{
+  font-family: 'Outfit', sans-serif;
+  background-color: #fafafa;
+}
+
+.sora{
+  font-family: 'Sora', sans-serif;
+}
+
+section{
+  margin: auto;
+  width: 80%;
+}
+/* 
+.background{
+  background-image: url("./assets/stelar-1.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+} */
+
