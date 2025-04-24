@@ -43,6 +43,8 @@ const Footer = () => {
 
             <p>Affiliate Agreement</p>
             <hr className='mb-2' />
+
+            <p className='font-bold mt-2'>TODAY IS A GOOD DAY</p>
         </div>
 
         <div className='grow basis-[200px] text-[#353535]'>
@@ -62,12 +64,14 @@ const Footer = () => {
             <FaFacebook size={22} className='mr-4'/>
             <FaInstagramSquare size={22}/>
             </div>
+          
         </div>
         </div>
 
         <div className='mt-5 bg-[#ceb675] py-5'>
             <section>
             <p>CopyRight 2023 &copy; SELARDIGITALMARKETPLACE | Privacy Policy  </p>
+            
             </section>
         </div>
     </footer>
