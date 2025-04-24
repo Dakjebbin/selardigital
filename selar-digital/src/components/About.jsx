@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const About = () => {
   return (
-    <section className="my-16 ">
+    <section id="about_us" className="my-16 ">
       <h2 className="text-center text-3xl font-bold mb-8 text-[#59486e]">
         HOW <span className="underline">AFFILIATE MARKETING</span> WORKS
       </h2>

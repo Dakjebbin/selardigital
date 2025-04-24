@@ -1,10 +1,11 @@
 import React from "react";
 import { assets } from "../assets/assest";
 import { MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 const Products = () => {
   return (
-    <main>
+    <main id="products">
     
       <div className="our-courses ml-18 mb-8">
         <MdOutlineKeyboardDoubleArrowRight
@@ -14,7 +15,8 @@ const Products = () => {
           <span> Products</span>
         </div>
       <section className="flex flex-wrap gap-6 m-auto w-[90%]">
-        <div className="grow basis-[200px] bg-[#23325a] px-5 py-5 rounded-tr-3xl rounded-bl-3xl">
+      <Link to="/login" className="grow basis-[200px] bg-[#23325a] px-5 py-5 rounded-tr-3xl rounded-bl-3xl">
+        <div >
           <div>
             <img className="rounded-md" src={assets.course_1} alt="" />
           </div>
@@ -38,7 +40,7 @@ const Products = () => {
               <p className="text-lg">$1,500 - $3,500</p>
             </div>
           </div>
-        </div>
+        </div></Link>
 
         <div className="grow basis-[200px] bg-[#d9bad7] px-5 py-5 rounded-tl-3xl rounded-br-3xl">
           <div>

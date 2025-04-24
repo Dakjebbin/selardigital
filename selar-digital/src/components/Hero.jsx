@@ -4,7 +4,7 @@ import { assets } from '../assets/assest'
 const Hero = () => {
   return (
     <main className='mb-20'>
-        <section className='flex flex-col items-center justify-center mt-10 background'>
+        <section className='flex flex-col items-center justify-center mt-10'>
             <h1 className='md:text-6xl text-3xl sm:text-4xl font-bold text-center '>
             Explore the Possibilities <br />of Marketing with SelarDigitalMarketPlace
             </h1>
@@ -22,7 +22,7 @@ const Hero = () => {
         </section>
 
         <section className='w-[90%] m-auto mt-10'>
-          <div className='h-80 w-full'>
+          <div className='h-96 w-full'>
         <img className='h-full rounded-2xl w-full object-cover' src={assets.background} alt="background" />
         </div>
         </section>

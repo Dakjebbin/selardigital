@@ -66,7 +66,7 @@ const Header = () => {
     };
   return (
 
-    <header className="bg-[#fafafa]">
+    <header className="bg-[#e9e7e7]">
       <div className="header">
         <div className='w-32'>
           <Link to="/">
@@ -82,7 +82,7 @@ const Header = () => {
            </li>
 
             <li>
-              <a href="#courses">Products</a>
+              <a href="#products">Products</a>
             </li>
 
             <li>
@@ -104,7 +104,7 @@ const Header = () => {
            </Link>
 
            <Link to="/register">
-             <button className='bg-[#d9bad7] px-4 py-2 hover:bg-red-600  text-white rounded-xl'>Sign Up</button>
+             <button className='bg-[black] px-4 py-2 hover:bg-red-600  text-white rounded-xl'>Sign Up</button>
              </Link>
          </div>
 
@@ -125,7 +125,7 @@ const Header = () => {
           </li>
 
             <li>
-              <a href="#courses" onClick={handleToggle}>Products</a>
+              <a href="#products" onClick={handleToggle}>Products</a>
             </li>
 
             <li>
@@ -155,6 +155,7 @@ Register
         </div>
         </div>
         </nav>
+        
     </header>
   )
 }
