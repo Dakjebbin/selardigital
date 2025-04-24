@@ -16,15 +16,15 @@ const Products = () => {
       </div>
       <section className="flex flex-wrap gap-6 m-auto w-[90%]">
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: -50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          viewport={{ once: true, amount: 0.2 }}
+          viewport={{  amount: 0.2 }}
           className="grow basis-[200px] bg-[#A69051] px-5 py-5 rounded-tr-3xl rounded-bl-3xl"
         >
-          <Link to="/login"  onClick={() => scrollX(0,0)}>
+          <Link to="/login" onClick={() => scrollX(0, 0)}>
             <div>
-              <img className="rounded-md" src={assets.course_1} alt="" />
+              <img className="rounded-md" loading="lazy" src={assets.course_1} alt="" />
             </div>
 
             <div className=" text-white">
@@ -50,109 +50,103 @@ const Products = () => {
         </motion.div>
 
         <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-        viewport={{ once: true, amount: 0.2 }}
-          
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          viewport={{ amount: 0.2 }}
           className="grow basis-[200px] bg-[#FCEFCB] px-5 py-5 rounded-tl-3xl rounded-br-3xl"
         >
-          <Link to="/login"
-          onClick={() => scrollX(0, 0)}>
-            <img className="rounded-md" src={assets.course_2} alt="" />
+          <Link to="/login" onClick={() => scrollX(0, 0)}>
+            <img className="rounded-md" loading="lazy" src={assets.course_2} alt="" />
           </Link>
 
           <div>
-            <Link to="/login"  onClick={() => scrollX(0, 0)}>
-            <p className="font-bold text-lg text-center my-3">Affiliate Lab</p>
-            <p className="text-[#464545] mb-2">
-              SEO-Based affiliate sites and flipping them for profit{" "}
-            </p>
-            <p className="text-lg underline mb-2">Standard</p>
+            <Link to="/login" onClick={() => scrollX(0, 0)}>
+              <p className="font-bold text-lg text-center my-3">
+                Affiliate Lab
+              </p>
+              <p className="text-[#464545] mb-2">
+                SEO-Based affiliate sites and flipping them for profit{" "}
+              </p>
+              <p className="text-lg underline mb-2">Standard</p>
 
-            <div className="flex items-center">
-              <img className="mr-4" src={assets.books} alt="" />
-              <p className="text-lg">$450 to Earn</p>
-            </div>
+              <div className="flex items-center">
+                <img className="mr-4" src={assets.books} alt="" />
+                <p className="text-lg">$450 to Earn</p>
+              </div>
 
-            <div className="flex items-center mt-1">
-              <img className="mr-4" src={assets.books} alt="" />
-              <p className="text-lg">$4,500 - $6,500</p>
-            </div>
+              <div className="flex items-center mt-1">
+                <img className="mr-4" src={assets.books} alt="" />
+                <p className="text-lg">$4,500 - $6,500</p>
+              </div>
             </Link>
           </div>
         </motion.div>
 
         <motion.div
-           initial={{ opacity: 0, y: 50 }}
-           whileInView={{ opacity: 1, y: 0 }}
-           transition={{ duration: 0.6, ease: "easeOut" }}
-           viewport={{ once: true, amount: 0.2 }}
+          initial={{ opacity: 0, y: -50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: "easeOut" }}
+          viewport={{  amount: 0.2 }}
           className="grow basis-[200px] bg-[#FCEFCB] px-5 py-5 rounded-tr-3xl rounded-bl-3xl"
         >
-          <Link to="/login"
-          onClick={() => scrollX(0, 0)}>
-            <img className="rounded-md" src={assets.course_3} alt="" />
+          <Link to="/login" onClick={() => scrollX(0, 0)}>
+            <img className="rounded-md" loading="lazy" src={assets.course_3} alt="" />
           </Link>
 
           <div>
-            <Link to="/login"
-          onClick={() => scrollX(0, 0)}>
-            <p className="font-bold text-lg text-center my-3">
-              HubSpot Academy
-            </p>
-            <p className="text-[#464545] mb-2">
-              Focus: Intro to affiliate marketing and how to get started
-            </p>
-            <p className="text-lg underline mb-2">Premium</p>
+            <Link to="/login" onClick={() => scrollX(0, 0)}>
+              <p className="font-bold text-lg text-center my-3">
+                HubSpot Academy
+              </p>
+              <p className="text-[#464545] mb-2">
+                Focus: Intro to affiliate marketing and how to get started
+              </p>
+              <p className="text-lg underline mb-2">Premium</p>
 
-            <div className="flex items-center">
-              <img className="mr-4" src={assets.books} alt="" />
-              <p className="text-lg">$850 to Earn</p>
-            </div>
+              <div className="flex items-center">
+                <img className="mr-4" src={assets.books} alt="" />
+                <p className="text-lg">$850 to Earn</p>
+              </div>
 
-            <div className="flex items-center mt-1">
-              <img className="mr-4" src={assets.books} alt="" />
-              <p className="text-lg">$9,500 - $11,500</p>
-            </div>
+              <div className="flex items-center mt-1">
+                <img className="mr-4" src={assets.books} alt="" />
+                <p className="text-lg">$9,500 - $11,500</p>
+              </div>
             </Link>
           </div>
         </motion.div>
 
         <motion.div
-
-initial={{ opacity: 0, y: 50 }}
-whileInView={{ opacity: 1, y: 0 }}
-transition={{ duration: 0.6, ease: "easeOut" }}
-viewport={{ once: true, amount: 0.2 }}
-          
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.2, ease: "easeOut" }}
+          viewport={{  amount: 0.2 }}
           className="grow basis-[200px] bg-[#A69051] px-5 py-5 rounded-tl-3xl rounded-br-3xl"
         >
-          <Link to="/login"
-          onClick={() => scrollX(0, 0)}>
-            <img className="rounded-md" src={assets.course_4} alt="" />
+          <Link to="/login" onClick={() => scrollX(0, 0)}>
+            <img className="rounded-md" loading="lazy" src={assets.course_4} alt="" />
           </Link>
 
           <div className=" text-white">
-            <Link to="/login"
-          onClick={() => scrollX(0, 0)}>
-            <p className="font-bold text-lg text-center my-3">
-              Savage Affiliates
-            </p>
-            <p className="text-[#dbd9d9] mb-2">
-              Focus: Funnels, Paid Ads, SEO, email marketing
-            </p>
-            <p className="text-lg underline mb-2">Legendary</p>
+            <Link to="/login" onClick={() => scrollX(0, 0)}>
+              <p className="font-bold text-lg text-center my-3">
+                Savage Affiliates
+              </p>
+              <p className="text-[#dbd9d9] mb-2">
+                Focus: Funnels, Paid Ads, SEO, email marketing
+              </p>
+              <p className="text-lg underline mb-2">Legendary</p>
 
-            <div className="flex items-center">
-              <img className="mr-4" src={assets.books} alt="" />
-              <p className="text-lg">$2000 to Earn</p>
-            </div>
+              <div className="flex items-center">
+                <img className="mr-4" src={assets.books} alt="" />
+                <p className="text-lg">$2000 to Earn</p>
+              </div>
 
-            <div className="flex items-center mt-1">
-              <img className="mr-4" src={assets.books} alt="" />
-              <p className="text-lg">$20,000 - $25,000</p>
-            </div>
+              <div className="flex items-center mt-1">
+                <img className="mr-4" src={assets.books} alt="" />
+                <p className="text-lg">$20,000 - $25,000</p>
+              </div>
             </Link>
           </div>
         </motion.div>

@@ -70,7 +70,7 @@ header{
     box-shadow: -5px 0 10px rgba(149, 150, 148, 0.5);
   transition: transform 0.6s ease-in-out;
   transform: translateY(100%) ; 
-  background-color:#23325A;
+  background-color:#A69051;
 }
 
 .mobile-view.active {
