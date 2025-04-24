@@ -5,6 +5,7 @@ import "../styles/Ournumbers.css"
 import { useRef } from "react";
 import { useEffect } from "react";
 import { assets } from "../assets/assest";
+import { motion } from "motion/react"; //eslint-disable-line
 
 const Impacts = () => {
 
@@ -77,7 +78,12 @@ const Impacts = () => {
     <section ref={numbersRef}  className="bg-[#967bb6] rounded-2xl ournumbers">
         <h2 className="pt-6">Sales In Numbers</h2>
 
-        <div className="flex flex-col items-center justify-between p-9 flex-wrap lg:flex-row ">
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          viewport={{ once: true, amount: 0.2 }}
+        className="flex flex-col items-center justify-between p-9 flex-wrap lg:flex-row ">
             <div className="mb-3 lg:mb-0">
                 <p className="numbers text-center">
                     {isCourses}+
@@ -104,7 +110,7 @@ const Impacts = () => {
                     Total Amount Earned in Dollars
                 </p>
             </div>
-        </div>
+        </motion.div>
 
     </section>
 

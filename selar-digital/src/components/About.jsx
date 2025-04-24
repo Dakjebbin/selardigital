@@ -2,15 +2,26 @@ import React from "react";
 import { MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
 import { assets } from "../assets/assest";
 import { Link } from "react-router-dom";
+import { motion } from "motion/react"; //eslint-disable-line
 
 const About = () => {
   return (
     <section id="about_us" className="my-16 ">
-      <h2 className="text-center text-3xl font-bold mb-8 text-[#59486e]">
+      <motion.h2
+       initial={{ opacity: 0, y: 50 }}
+       whileInView={{ opacity: 1, y: 0 }}
+       transition={{ duration: 0.6, ease: "easeOut" }}
+       viewport={{ once: true, amount: 0.2 }}
+      className="text-center text-3xl font-bold mb-8 text-[#59486e]">
         HOW <span className="underline">AFFILIATE MARKETING</span> WORKS
-      </h2>
+      </motion.h2>
 
-      <div className="flex gap-4 flex-wrap">
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        viewport={{ once: true, amount: 0.2 }}
+      className="flex gap-4 flex-wrap">
         <div className="grow basis-[180px]">
           <img src={assets.workflow_1} className="w-18 mb-4" alt="icon" />
           <p>AFFILIATE PROMOTE BRAND’S PRODUCT OR SERVICE ON WEBSITE</p>
@@ -47,7 +58,7 @@ const About = () => {
             COMMISSION
           </p>
         </div>
-      </div>
+      </motion.div>
 
       <div>
         <div className="our-courses ">
@@ -60,7 +71,12 @@ const About = () => {
 
         <div className="hero">
           <div className="hero-container">
-            <div className="description">
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              viewport={{ once: true, amount: 0.2 }}
+            className="description">
               <p className="text-[19px]">
                 Welcome to SelarDigitalMarketplace – your go-to hub for
                 discovering top-rated digital products and services, all in one
@@ -75,7 +91,7 @@ const About = () => {
                 marketing solutions, we help you make informed choices with
                 confidence.
               </p>
-            </div>
+            </motion.div>
             <div className="image">
               <img src={assets.about_us} alt="Photo" loading="lazy" />
             </div>

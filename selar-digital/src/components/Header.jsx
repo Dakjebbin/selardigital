@@ -99,11 +99,11 @@ const Header = () => {
 
 
         <div className="hidden lg:block  ">
-        <Link to="/login">
+        <Link to="/login"  onClick={() => scrollX(0,0)}>
            <button className='bg-[#23325A] px-4 mr-6 py-2 hover:bg-red-600  text-white rounded-xl'>Login</button>
            </Link>
 
-           <Link to="/register">
+           <Link to="/register"  onClick={() => scrollX(0,0)}>
              <button className='bg-[black] px-4 py-2 hover:bg-red-600  text-white rounded-xl'>Sign Up</button>
              </Link>
          </div>
