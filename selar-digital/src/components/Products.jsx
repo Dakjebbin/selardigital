@@ -20,7 +20,7 @@ const Products = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
           viewport={{ once: true, amount: 0.2 }}
-          className="grow basis-[200px] bg-[#23325a] px-5 py-5 rounded-tr-3xl rounded-bl-3xl"
+          className="grow basis-[200px] bg-[#A69051] px-5 py-5 rounded-tr-3xl rounded-bl-3xl"
         >
           <Link to="/login"  onClick={() => scrollX(0,0)}>
             <div>
@@ -31,7 +31,7 @@ const Products = () => {
               <p className="font-bold text-lg text-center my-3">
                 The Ultimate Branding BluePrint (UBB)
               </p>
-              <p className="text-[#dbd9d9] mb-2">
+              <p className="text-[#dad3d3] mb-2">
                 Visual Branding, Messaging, and creating brand consistency
               </p>
               <p className="text-lg underline mb-2">Basic</p>
@@ -55,7 +55,7 @@ const Products = () => {
         transition={{ duration: 0.6, ease: "easeOut" }}
         viewport={{ once: true, amount: 0.2 }}
           
-          className="grow basis-[200px] bg-[#d9bad7] px-5 py-5 rounded-tl-3xl rounded-br-3xl"
+          className="grow basis-[200px] bg-[#FCEFCB] px-5 py-5 rounded-tl-3xl rounded-br-3xl"
         >
           <Link to="/login"
           onClick={() => scrollX(0, 0)}>
@@ -88,7 +88,7 @@ const Products = () => {
            whileInView={{ opacity: 1, y: 0 }}
            transition={{ duration: 0.6, ease: "easeOut" }}
            viewport={{ once: true, amount: 0.2 }}
-          className="grow basis-[200px] bg-[#967bb6] px-5 py-5 rounded-tr-3xl rounded-bl-3xl"
+          className="grow basis-[200px] bg-[#FCEFCB] px-5 py-5 rounded-tr-3xl rounded-bl-3xl"
         >
           <Link to="/login"
           onClick={() => scrollX(0, 0)}>
@@ -126,7 +126,7 @@ whileInView={{ opacity: 1, y: 0 }}
 transition={{ duration: 0.6, ease: "easeOut" }}
 viewport={{ once: true, amount: 0.2 }}
           
-          className="grow basis-[200px] bg-[#23325a] px-5 py-5 rounded-tl-3xl rounded-br-3xl"
+          className="grow basis-[200px] bg-[#A69051] px-5 py-5 rounded-tl-3xl rounded-br-3xl"
         >
           <Link to="/login"
           onClick={() => scrollX(0, 0)}>

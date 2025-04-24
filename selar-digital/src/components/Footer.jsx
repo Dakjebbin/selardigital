@@ -5,7 +5,7 @@ import { FaInstagramSquare } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className='bg-[#967bb6]'>
+    <footer className='bg-[#A69051]'>
        <div className='flex flex-wrap gap-10 w-[80%] m-auto items-center'>
 
         <div className='grow basis-[200px]'>
@@ -65,7 +65,7 @@ const Footer = () => {
         </div>
         </div>
 
-        <div className='mt-5 bg-[#d9bad7] py-5'>
+        <div className='mt-5 bg-[#ceb675] py-5'>
             <section>
             <p>CopyRight 2023 &copy; SELARDIGITALMARKETPLACE | Privacy Policy  </p>
             </section>

@@ -75,7 +75,7 @@ const Impacts = () => {
 
   return (
     <div>
-    <section ref={numbersRef}  className="bg-[#967bb6] rounded-2xl ournumbers">
+    <section ref={numbersRef}  className="bg-[#A69051] rounded-2xl ournumbers">
         <h2 className="pt-6">Sales In Numbers</h2>
 
         <motion.div
@@ -116,26 +116,46 @@ const Impacts = () => {
 
     <div className="my-16">
     
-    <h2 className="text-center text-3xl font-bold mb-8 text-[#59486e]">
+    <h2 className="text-center text-3xl font-bold mb-8 text-[#A69051]">
         OUR <span className="underline">HAPPY</span> CLIENTS
       </h2>
 
       <section className="flex gap-3 items-center justify-between">
-        <div>
+        <motion.div
+        initial={{ opacity: 0, y: -65 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.5, ease: "easeOut" }}
+        viewport={{ once: true, amount: 0.2 }}
+        >
         <img src={assets.aliexpress} alt="Aliexpress" />
-        </div>
+        </motion.div>
 
-        <div>
+        <motion.div
+           initial={{ opacity: 0, y: -60 }}
+           whileInView={{ opacity: 1, y: 0 }}
+           transition={{ duration: 1.3, ease: "easeOut" }}
+           viewport={{ once: true, amount: 0.2 }}
+        >
         <img src={assets.agoda} alt="Agoda" />
-        </div>
+        </motion.div>
 
-        <div>
+        <motion.div
+           initial={{ opacity: 0, y: -55 }}
+           whileInView={{ opacity: 1, y: 0 }}
+           transition={{ duration: 1, ease: "easeOut" }}
+           viewport={{ once: true, amount: 0.2 }}
+        >
         <img src={assets.trip} alt="Trip" />
-        </div>
+        </motion.div>
 
-        <div>
+        <motion.div 
+           initial={{ opacity: 0, y: -50 }}
+           whileInView={{ opacity: 1, y: 0 }}
+           transition={{ duration: 0.8, ease: "easeOut" }}
+           viewport={{ once: true, amount: 0.2 }}
+        >
         <img src={assets.shopee} alt="Shopee" />
-        </div>
+        </motion.div>
       </section>
 </div>
     </div>

@@ -12,7 +12,7 @@ const About = () => {
        whileInView={{ opacity: 1, y: 0 }}
        transition={{ duration: 0.6, ease: "easeOut" }}
        viewport={{ once: true, amount: 0.2 }}
-      className="text-center text-3xl font-bold mb-8 text-[#59486e]">
+      className="text-center text-3xl font-bold mb-8 text-[#A69051]">
         HOW <span className="underline">AFFILIATE MARKETING</span> WORKS
       </motion.h2>
 
@@ -27,7 +27,7 @@ const About = () => {
           <p>AFFILIATE PROMOTE BRAND’S PRODUCT OR SERVICE ON WEBSITE</p>
         </div>
         <MdOutlineKeyboardDoubleArrowRight
-          className="text-[#59486e] font-bold"
+          className="text-[#A69051] font-bold"
           size={80}
         />
 
@@ -38,7 +38,7 @@ const About = () => {
           </p>
         </div>
         <MdOutlineKeyboardDoubleArrowRight
-          className="text-[#59486e] font-bold"
+          className="text-[#A69051] font-bold"
           size={80}
         />
 
@@ -47,7 +47,7 @@ const About = () => {
           <p>AFFILIATE HUB TRACKS THE PURCHASE AND DETAILS OF TRAFFIC</p>
         </div>
         <MdOutlineKeyboardDoubleArrowRight
-          className="text-[#59486e] font-bold"
+          className="text-[#A69051] font-bold"
           size={80}
         />
 

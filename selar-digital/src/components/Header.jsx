@@ -1,37 +1,3 @@
-// import React from 'react'
-// import { GiHamburgerMenu } from "react-icons/gi";
-// const Header = () => {
-//   return (
-//     <header className='flex justify-between items-center mx-10'>
-//         <div className='w-32'>
-//             <img className='w-full' src="/selar-white.jpg" alt="" />
-//         </div>
-
-//         <nav>
-//             <ul className='flex'>
-//                 <li className='mr-6 text-xl font-semibold'>Home</li>
-//                 <li className='mr-6 text-xl font-semibold'>About Us</li>
-//                 <li className='mr-6 text-xl font-semibold'>Products</li>
-//                 <li className='mr-6 text-xl font-semibold'>Contact Us</li>
-//             </ul>
-//         </nav>
-
-//         <div>
-//             <button className='bg-[#23325A] px-4 py-2 mr-6 hover:bg-red-600  text-white rounded-xl'>Login</button>
-//             <button className='bg-[#d9bad7] px-4 py-2 mr-6 hover:bg-red-600  text-white rounded-xl'>Sign Up</button>
-//         </div>
-
-//         {/* Mobile view */}
-
-        
-//     </header>
-//   )
-// }
-
-// export default Header
-
-
-
 
 import "../styles/navbar.css"
 import { Link } from 'react-router-dom'
@@ -66,7 +32,7 @@ const Header = () => {
     };
   return (
 
-    <header className="bg-[#e9e7e7]">
+    <header className="bg-[#f3f3f3]">
       <div className="header">
         <div className='w-32'>
           <Link to="/">
@@ -100,7 +66,7 @@ const Header = () => {
 
         <div className="hidden lg:block  ">
         <Link to="/login"  onClick={() => scrollX(0,0)}>
-           <button className='bg-[#23325A] px-4 mr-6 py-2 hover:bg-red-600  text-white rounded-xl'>Login</button>
+           <button className='bg-[#A69051] px-4 mr-6 py-2 hover:bg-red-600  text-white rounded-xl'>Login</button>
            </Link>
 
            <Link to="/register"  onClick={() => scrollX(0,0)}>

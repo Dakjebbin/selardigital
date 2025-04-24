@@ -40,7 +40,7 @@ const Hero = () => {
         </motion.p>
 
         <Link to="/register" onClick={() => scrollX(0, 0)}>
-          <button className="bg-gradient-to-br from-[#23325A] to-[#967bb6] text-white px-4 py-3 text-xl rounded-xl cursor-pointer font-semibold">
+          <button className="bg-gradient-to-tl from-[#A69051] to-[white] text-white px-4 py-3 text-xl rounded-xl cursor-pointer font-semibold">
             Register Now And Start Earning
           </button>
         </Link>
