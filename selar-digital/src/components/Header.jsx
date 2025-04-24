@@ -139,15 +139,15 @@ const Header = () => {
 
 <div className="flex justify-between mx-5 pt-10 ">
              <div className="">
-          <Link to="/login">
+          <Link to="/login" onClick={() => scrollX(0,0)}>
    <button className="bg-white px-5 py-1 rounded-xl" >
 Login
    </button>
    </Link>
         </div>
 
-        <div className="">
-          <Link to="/register">
+        <div>
+          <Link to="/register" onClick={() => scrollX(0,0)}>
    <button className="bg-white px-5 py-1 rounded-xl" >
 Register
    </button>
