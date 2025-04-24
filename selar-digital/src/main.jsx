@@ -7,7 +7,10 @@ import Layout from './layouts/layout.jsx'
 import ContactUs from './pages/ContactUs.jsx'
 import Login from './auth/Login.jsx'
 import Register from './auth/Register.jsx'
-import toast, { Toaster } from 'react-hot-toast';
+import  { Toaster } from 'react-hot-toast';
+import Dashboard from './pages/Dashboard.jsx'
+import AuthContextProvider from './context/auth-context.jsx'
+import Courses from "./pages/SidebarCourse.jsx"
 
 const router = createBrowserRouter([
   {
@@ -28,13 +31,22 @@ const router = createBrowserRouter([
         element: <Register/>
       }
     ]
+  },{
+    path: "/dashboard",
+    element: <Dashboard/>
+  },{
+    path: "/courses",
+    element: <Courses/>
   }
+
 
 ])
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
- <RouterProvider router={router} />
+    <AuthContextProvider>
+      <RouterProvider router={router} />
  <Toaster />
+ </AuthContextProvider>
   </StrictMode>,
 )

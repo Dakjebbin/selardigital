@@ -1,9 +1,66 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { assets } from '../assets/assest'
 import { Link } from 'react-router-dom'
 import { motion } from "motion/react"; //eslint-disable-line
+import toast from 'react-hot-toast';
+import axios from 'axios';
 
 const Login = () => {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [loading, setLoading] = useState(false);
+
+    const baseUrl = import.meta.env.VITE_BASE_URL;
+    axios.defaults.withCredentials = true;
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        if (!email || !password) {
+            toast.error("Please fill in all fields");
+            return;
+        }
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            toast.error("Invalid email format.");
+            return;
+        }
+        setLoading(true);
+        try {
+            const response = await axios.post(`${baseUrl}/auth/login`, {
+                email,
+                password,
+            }, {
+                withCredentials: true,
+            })
+
+            if (response.status === 200) {
+                toast.success("Login Successfully");
+                setEmail('');
+                 setPassword('');
+                window.location.assign("/dashboard");
+            } else {
+                toast.error("Login Failed");
+            }
+        } catch (error) {
+            if (error.response) {
+                // Handle specific error codes
+                if (error.response.status === 404) {
+                  toast.error('Email or Password is incorrect'); // Invalid credentials
+                } else if (error.response.status === 409) {
+                  toast.error('Incorrect credentials or account issues'); // Conflict error (e.g., email already taken)
+                } else {
+                  toast.error('An error occurred. Please try again later.'); // Generic error
+                }
+              } else if (error.request) {
+                toast.error('No response from server. Please check your internet connection.');
+              } else {
+                toast.error('An unexpected error occurred.');
+              }
+        } finally{
+            setLoading(false);
+        }
+        
+    }
   return (
     <section className='w-[95%] m-auto'>
             <div className='grid lg:grid-cols-[420px_1fr] grid-rows-1  gap-10'>
@@ -51,7 +108,7 @@ const Login = () => {
                         <p className='text-xl'>Don't Have an Account?<Link  onClick={() => scrollX(0,0)} to="/register" className='text-blue-400'> Sign Up</Link></p>
                     </motion.div>
 
-                    <form className='mt-16'>
+                    <form onSubmit={handleSubmit} className='mt-16'>
                         <motion.div
                          initial={{ opacity: 0, y: -50 }}
                          whileInView={{ opacity: 1, y: 0 }}
@@ -59,16 +116,16 @@ const Login = () => {
                          viewport={{ once: true, amount: 0.2 }}
                         className='flex flex-col'>
                             <label className='text-xl mb-3'>Email </label>
-                        <input className='border shadow-md shadow-[#a7a6a6] border-[#aaa9a9] rounded-md px-5 py-3 md:w-96 w-[100%] mb-7 outline-none' type="email" name="" id="" />
+                        <input value={email} onChange={(e) => setEmail(e.target.value)} className='border shadow-md shadow-[#a7a6a6] border-[#aaa9a9] rounded-md px-5 py-3 md:w-96 w-[100%] mb-7 outline-none' type="email" name="" id="email" />
                        
 
                         <label className='text-xl mb-3'> Password  </label>
-                        <input className='border shadow-md shadow-[#a7a6a6] border-[#aaa9a9] rounded-md px-5 py-3 md:w-96 w-[100%] mb mb-10 outline-none' type="password" name="" id="" />
+                        <input value={password} onChange={(e) => setPassword(e.target.value)} className='border shadow-md shadow-[#a7a6a6] border-[#aaa9a9] rounded-md px-5 py-3 md:w-96 w-[100%] mb mb-10 outline-none' type="password" name="" id="password" />
                       
                         </motion.div>
 
                         <div className='flex items-center justify-center'>
-                        <button className='bg-[#A69051] hover:bg-[#413923] cursor-pointer px-4 text-lg text-white rounded-xl py-3'>Login</button>
+                        <button type='submit' className='bg-[#A69051] hover:bg-[#413923] cursor-pointer px-4 text-lg text-white rounded-xl py-3'>{loading ? "Loading": "Login"}</button>
                         </div>
                     </form>
 
