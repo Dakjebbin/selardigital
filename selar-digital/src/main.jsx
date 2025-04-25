@@ -11,6 +11,8 @@ import  { Toaster } from 'react-hot-toast';
 import Dashboard from './pages/Dashboard.jsx'
 import AuthContextProvider from './context/auth-context.jsx'
 import Courses from "./pages/SidebarCourse.jsx"
+import Withdraw from './components/Withdraw.jsx'
+import SidebarWithdraw from './pages/SidebarWithdraw.jsx'
 
 const router = createBrowserRouter([
   {
@@ -37,6 +39,9 @@ const router = createBrowserRouter([
   },{
     path: "/courses",
     element: <Courses/>
+  },{
+    path: "/Withdraw",
+    element: <SidebarWithdraw/>
   }
 
 

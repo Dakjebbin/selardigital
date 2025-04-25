@@ -12,11 +12,10 @@ import { IoIosLogOut } from "react-icons/io";
 import { IoMdWallet } from "react-icons/io";
 import { FaSignal } from "react-icons/fa";
 import toast from "react-hot-toast";
+import Withdraw from "../components/Withdraw";
 
-import Dashboard from "./Dashboard";
-import Courses from "../pages/Courses";
 
-const Sidebar = () => {
+const SidebarWithdraw = () => {
   axios.defaults.withCredentials = true;
     const { userData } = useAuthContext();
   const [open, setOpen] = useState(true);
@@ -216,7 +215,7 @@ const Sidebar = () => {
                   </div>
                   <div className="leading-5">
                  <p className="flex items-center mr-3">{userData?.username}</p>
-                    <p className="text-xs uppercase truncate">{userData?.email}</p> 
+                    <p className="text-xs uppercase">{userData?.email}</p> 
 
  
                     <button 
@@ -247,7 +246,7 @@ const Sidebar = () => {
           <div
             className={`flex-1 p-5 overflow-auto  md:max-h-screen transition-all duration-500 ${open ? "ml-4" : "ml-5"}`}
           >
-             <Dashboard />
+             <Withdraw />
           </div>
         </>
     )}
@@ -256,4 +255,4 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+export default SidebarWithdraw;

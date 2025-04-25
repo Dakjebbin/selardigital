@@ -3,10 +3,18 @@ import Charts from '../components/Charts'
 import { assets } from "../assets/assest";
 import { MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
 import { motion } from "motion/react"; //eslint-disable-line
+import { useAuthContext } from '../context/auth-context';
 
 const Courses = () => {
+    const { userData } = useAuthContext();
   return (
     <div>
+        {userData && (
+            <>
+        <div className="text-right text-xl my-3 font-semibold">
+          <p>Welcome <span className="text-[#8b7a1a]">Back</span> {userData.username}</p>
+        </div>
+
         <div className='flex gap-16 lg:flex-row flex-col'>
         <Charts/>
 
@@ -166,7 +174,8 @@ const Courses = () => {
       </div>
     </main>
         </div>
-        
+        </>
+        )}
     </div>
   )
 }
