@@ -1,15 +1,15 @@
 import express from 'express';
 import { 
-    // forgotPassword,
+     forgotPassword,
     login, 
     logout, 
     register, 
-    // resetPassword,
+    resetPassword,
     updateApprovedStatus,
     userDetail, 
     userDetails, 
      validate, 
-    // validateOtp
+    validateOtp
 } from '../controllers/user.controllers.js';
 import { validateUsers } from '../middlewares/validate.users.js';
 // import { rolevalidation } from '../middlewares/role.validation.js';
@@ -23,9 +23,9 @@ router.post("/login", login)
 router.get("/validate", validateUsers, validate)
 // router.patch("/approvedStatus/:id", validateUsers, rolevalidation, updateApprovedStatus)
 router.post("/logout", validateUsers, logout)
-// router.post("/forgot-Password", forgotPassword)
-// router.post("/validate-Otp", validateOtp)
-// router.post("/reset-password", resetPassword)
+router.post("/forgot-Password", forgotPassword)
+router.post("/validate-Otp", validateOtp)
+router.post("/reset-password", resetPassword)
 
 
 

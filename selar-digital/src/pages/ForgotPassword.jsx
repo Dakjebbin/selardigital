@@ -12,7 +12,7 @@ const ForgotPassowrd = () => {
     const [loading, setLoading] = useState(false)
     const [Emailsent, setEmailSent] = useState("");
     const [code, setCode] = useState(false);
-    const baseUrl = import.meta.env.VITE_BASEURL;
+    const baseUrl = import.meta.env.VITE_BASE_URL;
     const inputRefs = useRef([]);
 
     const handleInput = (e, index) => {
@@ -40,7 +40,7 @@ const ForgotPassowrd = () => {
                     return;
                 }
 
-                const response = await axios.post(`${baseUrl}/auth/forgotPassword`,{
+                const response = await axios.post(`${baseUrl}/auth/forgot-Password`,{
                     email
                 },{
                     withCredentials:true
@@ -92,10 +92,11 @@ const ForgotPassowrd = () => {
             }
 
             try {
-                const response = await axios.post(`${baseUrl}/auth/resetCode`,{
+                const response = await axios.post(`${baseUrl}/auth/validate-Otp`,{
                     email,
-                    resetOtp: otpString
-                })
+                    otp: otpString
+                })  
+                
                
                 
           if (response.data.success === true) {
@@ -132,10 +133,10 @@ const ForgotPassowrd = () => {
             // }
 
             try {
-                const response = await axios.post(`${baseUrl}/auth/resetPassword`,{
+                const response = await axios.post(`${baseUrl}/auth/reset-Password`,{
                     email,
                     otp,
-                    password
+                    newPassword: password
                 })
     
                 if (response.data.success === true) {
@@ -193,6 +194,7 @@ const ForgotPassowrd = () => {
                 onKeyDown={(e) => handleKeyDown(e, index)}
                  />
             ))}
+            {otp}
             </div>
             
                 <button type='submit' className='bg-gray-600 my-10 py-3 rounded-md shadow-md shadow-black text-white text-xl font-bold'>Submit</button>
