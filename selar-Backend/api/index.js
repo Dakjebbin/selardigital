@@ -19,7 +19,7 @@ const db = process.env.MONGODB_LINK
 app.use(express.json({limit:'12mb'}));
 app.use(cookieParser());
 app.use(cors({
-    origin:[ "http://localhost:5173"],
+    origin:[ "http://localhost:5173", "https://selardigital.vercel.app/"],
     credentials: true,
    
 }))
