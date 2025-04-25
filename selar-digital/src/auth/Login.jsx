@@ -9,6 +9,7 @@ const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
+    const [permissionError, setPermissionError] = useState(false);
 
     const baseUrl = import.meta.env.VITE_BASE_URL;
     axios.defaults.withCredentials = true;
@@ -25,6 +26,7 @@ const Login = () => {
             return;
         }
         setLoading(true);
+        setPermissionError(false);
         try {
             const response = await axios.post(`${baseUrl}/auth/login`, {
                 email,
@@ -43,19 +45,20 @@ const Login = () => {
             }
         } catch (error) {
             if (error.response) {
-                // Handle specific error codes
                 if (error.response.status === 404) {
-                  toast.error('Email or Password is incorrect'); // Invalid credentials
-                } else if (error.response.status === 409) {
-                  toast.error('Incorrect credentials or account issues'); // Conflict error (e.g., email already taken)
+                    toast.error('Email or Password is incorrect'); // Invalid credentials
+                  } else if (error.response.status === 409) {
+                    toast.error('Incorrect credentials or account issues'); // Conflict error (e.g., email already taken)
+                  } else if (error.response.status === 403) {
+                    setPermissionError(true);
+                  } else {
+                    toast.error('An error occurred. Please try again later.'); // Generic error
+                  }
+                } else if (error.request) {
+                  toast.error('No response from server. Please check your internet connection.');
                 } else {
-                  toast.error('An error occurred. Please try again later.'); // Generic error
+                  toast.error('An unexpected error occurred.');
                 }
-              } else if (error.request) {
-                toast.error('No response from server. Please check your internet connection.');
-              } else {
-                toast.error('An unexpected error occurred.');
-              }
         } finally{
             setLoading(false);
         }
@@ -128,6 +131,22 @@ const Login = () => {
                         <button type='submit' className='bg-[#A69051] hover:bg-[#413923] cursor-pointer px-4 text-lg text-white rounded-xl py-3'>{loading ? "Loading": "Login"}</button>
                         </div>
                     </form>
+
+                    {permissionError && (
+        <div className="fixed inset-0 flex items-center justify-center bg-[#ffffff48] bg-opacity-50 z-50">
+          <div className="bg-[#d6d4d4] p-6 rounded-lg w-80 max-w-full">
+            <h2 className="text-xl font-bold text-center text-red-500">Access Denied</h2>
+            <div className="mt-4 flex justify-center">
+              <button 
+                onClick={() => setPermissionError(false)} 
+                className="bg-[#FE0000] text-white px-6 py-2 rounded-lg hover:bg-[#b44747]">
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
 
                     <Link to="/forgotPassword">
                     <p className='my-3 text-xl'>Forgot Password?</p>
