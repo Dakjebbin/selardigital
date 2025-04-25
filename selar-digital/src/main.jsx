@@ -13,6 +13,7 @@ import AuthContextProvider from './context/auth-context.jsx'
 import Courses from "./pages/SidebarCourse.jsx"
 import Withdraw from './components/Withdraw.jsx'
 import SidebarWithdraw from './pages/SidebarWithdraw.jsx'
+import ForgotPassword from './pages/ForgotPassword.jsx'
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,9 @@ const router = createBrowserRouter([
       },{
         path: "register",
         element: <Register/>
+      },{
+        path: "forgotPassword",
+        element: <ForgotPassword/>
       }
     ]
   },{

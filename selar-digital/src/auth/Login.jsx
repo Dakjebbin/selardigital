@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { assets } from '../assets/assest'
-import { Link } from 'react-router-dom'
+import { Link} from 'react-router-dom'
 import { motion } from "motion/react"; //eslint-disable-line
 import toast from 'react-hot-toast';
 import axios from 'axios';
@@ -129,7 +129,9 @@ const Login = () => {
                         </div>
                     </form>
 
+                    <Link to="/forgotPassword">
                     <p className='my-3 text-xl'>Forgot Password?</p>
+                    </Link>
                 </div>
             </div>
     </section>
