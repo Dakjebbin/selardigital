@@ -4,7 +4,7 @@ import { Link} from 'react-router-dom'
 import { motion } from "motion/react"; //eslint-disable-line
 import toast from 'react-hot-toast';
 import axios from 'axios';
-import Footer from '../Components/Footer';
+import Footer from '../components/Footer';
 
 const Login = () => {
     const [email, setEmail] = useState("");

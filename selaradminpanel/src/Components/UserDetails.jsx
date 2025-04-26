@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { assets } from "../assets/assest";
 import { useAuthContext } from "../context/auth-context";
 import { MdDashboard } from "react-icons/md";
-// import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import toast from "react-hot-toast";
 import { FaSpinner } from "react-icons/fa";
 import axios from "axios";
@@ -295,10 +295,10 @@ const formatDate = (timestamp) => {
             {/* Footer */}
             <div className="flex items-center gap-2 px-3 py-2">
               <div>
-                {/* <Avatar>
+                 <Avatar>
                   <AvatarImage src="https://github.com/shadcn.png" />
                   <AvatarFallback>WW</AvatarFallback>
-                </Avatar> */}
+                </Avatar> 
               </div>
               <div className={`leading-5 ${!open && `w-0 translate-x-24`} duration-500 overflow-hidden`}>
                 <p className="flex items-center mr-3">{userData?.username}</p>
@@ -356,10 +356,10 @@ const formatDate = (timestamp) => {
 
                 <div className="flex items-center gap-2 pt-4 pl-4">
                   <div>
-                    {/* <Avatar>
+                     <Avatar>
                       <AvatarImage src="https://github.com/shadcn.png" />
                       <AvatarFallback>WW</AvatarFallback>
-                    </Avatar> */}
+                    </Avatar> 
                   </div>
                   <div className="leading-5">
                     <p className="flex items-center mr-3">{userData?.username}</p>

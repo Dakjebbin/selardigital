@@ -6,9 +6,9 @@ import App from './App.jsx'
 import { createBrowserRouter, RouterProvider } from 'react-router';
 import AuthContextProvider from './context/auth-context.jsx';
 import ForgotPassowrd from './Pages/ForgotPassword.jsx';
-import SidebarCourses from './Components/Sidebar.jsx';
-import UserDetails from './Components/UserDetails.jsx';
-import FundUser from './Components/FundUser.jsx';
+import SidebarCourses from './components/Sidebar.jsx';
+import UserDetails from './components/UserDetails.jsx';
+import FundUser from './components/FundUser.jsx';
 
 
 const router = createBrowserRouter([
