@@ -6,7 +6,7 @@ import App from './App.jsx'
 import { createBrowserRouter, RouterProvider } from 'react-router';
 import AuthContextProvider from './context/auth-context.jsx';
 import ForgotPassowrd from './Pages/ForgotPassword.jsx';
-import SidebarCourses from './components/Sidebar.jsx';
+import SidebarCourses from "./components/Sidebar.jsx"
 import UserDetails from './components/UserDetails.jsx';
 import FundUser from './components/FundUser.jsx';
 
@@ -19,7 +19,7 @@ const router = createBrowserRouter([
     path: "/forgotPassword",
     element: <ForgotPassowrd/>
   },{
-    path: "admin-dashboard",
+    path: "/admin-dashboard",
     element: <SidebarCourses/>
   },{
     path:"/admin-dashboard/user/:Id",
