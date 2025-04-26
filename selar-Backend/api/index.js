@@ -2,7 +2,7 @@ import express from 'express';
 import dotenv from "dotenv";
 import mongoose from 'mongoose';
 import authRoutes from "../routes/user.routes.js";
-import transactionRoutes from "./routes/transaction.routes.js"
+import transactionRoutes from "../routes/transaction.routes.js"
 import fundRoutes from "../routes/fund.routes.js"
 // import kycRoutes from "./routes/kyc.routes.js"
 import cookieParser from 'cookie-parser';
