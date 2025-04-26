@@ -1,6 +1,6 @@
 import express from 'express';
 import { 
-    // fundUser, 
+    fundUser, 
     // getFundData, 
     withdrawal } from '../controllers/fund.controllers.js';
 import { validateUsers } from '../middlewares/validate.users.js';
@@ -8,7 +8,7 @@ import { validateUsers } from '../middlewares/validate.users.js';
 
 const router = express.Router();
 
-// router.post("/fund/:id", validateUsers, userActive, fundUser)
+ router.post("/fund/:id", validateUsers, fundUser)
 // router.get("/fund/:email", validateUsers, getFundData)
 router.post("/withdraw", validateUsers, withdrawal)
 

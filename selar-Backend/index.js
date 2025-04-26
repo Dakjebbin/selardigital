@@ -2,7 +2,7 @@ import express from 'express';
 import dotenv from "dotenv";
 import mongoose from 'mongoose';
 import authRoutes from "./routes/user.routes.js";
-// import transactionRoutes from "./routes/transaction.routes.js"
+import transactionRoutes from "./routes/transaction.routes.js"
 import fundRoutes from "./routes/fund.routes.js"
 // import kycRoutes from "./routes/kyc.routes.js"
 import cookieParser from 'cookie-parser';
@@ -25,7 +25,7 @@ app.use(cors({
 }))
 app.use("/auth", authRoutes)
 // app.use("/authKyc", kycRoutes);
-// app.use("/transactions", transactionRoutes )
+ app.use("/transactions", transactionRoutes )
 app.use("/userFund", fundRoutes)
 
 app.use((err,req,res,next)=>{

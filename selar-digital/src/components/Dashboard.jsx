@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useAuthContext } from "../context/auth-context";
 import { Link } from "react-router-dom";
 import { BsFillBarChartFill } from "react-icons/bs";
@@ -7,6 +7,7 @@ import { AiTwotoneDollarCircle } from "react-icons/ai";
 import "../styles/dash.css";
 import { FaUsb } from "react-icons/fa";
 import { CiCirclePlus } from "react-icons/ci";
+import axios from "axios"
 import { FaArrowRightArrowLeft } from "react-icons/fa6";
 import { Line } from "react-chartjs-2";
 import {
@@ -19,6 +20,7 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import toast from "react-hot-toast";
 
 ChartJS.register(
   CategoryScale,
@@ -33,6 +35,7 @@ ChartJS.register(
 const Dashboard = () => {
   const { userData } = useAuthContext();
   const [transactions, setTransactions] = useState([]);
+  const baseUrl = import.meta.env.VITE_BASE_URL;
 
   const formatDate = (timestamp) => {
     const date = new Date(timestamp);
@@ -42,6 +45,39 @@ const Dashboard = () => {
       day: "numeric",
     });
   };
+
+  const statusLabels = {
+    Success: "Success",
+    Failed: "Failed",
+    Pending: "Pending",
+  };
+
+  const fetchTransactions = async () => {
+
+    try {
+      const response = await axios.get(`${baseUrl}/transactions/get-transactionAdmin/${userData._id}`, {
+        withCredentials: true,
+      })
+  
+      console.log(response);
+      
+      setTransactions(response.data.data);
+    } catch (error) {
+      if (error instanceof axios.AxiosError) {
+        toast.error(error?.response?.data);
+      } else {
+        toast.error("Error:", error);
+      }
+    }
+
+  }
+
+  useEffect(() => {
+    fetchTransactions()
+  },[userData?._id]);
+  
+
+  
 
   const profitData = {
     labels: transactions.map((transaction) =>
@@ -89,6 +125,8 @@ const Dashboard = () => {
   //   navigate(`${userData?.username}/transaction-details/${_id}`, { state: { transaction } });
   // };
 
+ 
+
   const tIcons = {
     Deposit: <ion-icon name="arrow-up-outline"></ion-icon>,
     Withdrawal: <ion-icon name="arrow-down-outline"></ion-icon>,
@@ -107,7 +145,7 @@ const Dashboard = () => {
           src="https://www.tradingview.com/widgetembed/?frameElementId=tradingview_e15f9&symbol=NASDAQ%3AAAPL&interval=60&hidesidetoolbar=1&symboledit=1&saveimage=1&theme=dark"
           width="100%"
           height="100"
-          allowfullscreen="true"
+          allowFullScreen={true}
           title="TradingView Price Ticker"
         ></iframe>
       </div>
@@ -234,7 +272,7 @@ const Dashboard = () => {
                       <div
                         key={index}
                         className="transaction"
-                        onClick={() => handleOnclick(transaction)}
+                        // onClick={() => handleOnclick(transaction)}
                       >
                         <div className="p-1">
                           <div className="t-icon">
@@ -253,7 +291,7 @@ const Dashboard = () => {
                               className={`status ${transaction.status.toLowerCase()}`}
                             >
                               {statusLabels[transaction.status.toLowerCase()] ||
-                                transaction.status}
+                                transaction.status} 
                             </span>
                           </p>
                         </div>

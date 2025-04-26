@@ -1,4 +1,5 @@
 
+import fundModel from "../models/fund.model.js";
 import Transaction from "../models/transaction.model.js";
 import User from "../models/user.model.js";
 import { validationResult } from "express-validator";
@@ -73,4 +74,75 @@ const withdrawal = async (req, res) => {
     }
 }
 
-export { withdrawal}
+const fundUser = async (req, res) => {
+    const {id} = req.params;
+   let {amount, plan} = req.body;
+
+    try {
+        amount = parseFloat(amount); 
+
+        if (isNaN(amount) || !amount || !plan) {
+            return res.status(400).json({
+                success: false,
+                message: "Please provide a valid amount and plan"
+            });
+        }
+
+    if (!amount ||!plan) {
+        return res.status(400).json({
+            success: false,
+            message: "Please provide amount, and plan"
+        });
+    }
+
+    if (amount <= 0) {
+        return res.status(400).json({ 
+            success: false,
+            message: "Invalid amount" 
+        });
+      }
+
+      const user = await User.findById(id).exec()
+
+      if(!user) {
+        return res.status(404).json({
+            success: false,
+            message: "User not found"
+        });
+      }
+
+      user.balance += amount;
+      await user.save();
+
+      const fund = new fundModel({
+        email: user._id,  // Storing the user's _id from the database
+        amount,
+        plan
+    });
+    await fund.save();
+    
+    const transaction = new Transaction({
+        user: user._id,  // Storing the user's _id from the database
+        amount,
+        type: "Course",
+        status: 'Completed'
+    });
+    await transaction.save();
+
+    return res.status(200).json({
+        success: true,
+        message: "User successfully funded",
+        updatedBalance: user.balance,  // Return the updated balance
+        transactionId: transaction._id  // Return the transaction ID
+    });
+ 
+        
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: "Server error"+ error.message
+        });
+    }
+}
+
+export { withdrawal, fundUser };

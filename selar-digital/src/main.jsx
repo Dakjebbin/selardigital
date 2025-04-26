@@ -14,6 +14,7 @@ import Courses from "./pages/SidebarCourse.jsx"
 import Withdraw from './components/Withdraw.jsx'
 import SidebarWithdraw from './pages/SidebarWithdraw.jsx'
 import ForgotPassword from './pages/ForgotPassword.jsx'
+import Kyc from './pages/Kyc.jsx'
 
 const router = createBrowserRouter([
   {
@@ -46,6 +47,9 @@ const router = createBrowserRouter([
   },{
     path: "/Withdraw",
     element: <SidebarWithdraw/>
+  },{
+    path: "/kyc",
+    element: <Kyc/>
   }
 
 

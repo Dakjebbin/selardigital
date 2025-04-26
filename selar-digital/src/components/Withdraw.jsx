@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SalesChart from "../pages/withdrawChart";
 import { useAuthContext } from "../context/auth-context";
 import axios from "axios";
@@ -11,10 +11,18 @@ const Withdraw = () => {
   const [paymentDetail, setPaymentDetail] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [setWithdrawalPending] = useState(false);
-
+  const [balance, setBalance] = useState(0);
   const { userData } = useAuthContext();
   const baseUrl = import.meta.env.VITE_BASE_URL;
   axios.defaults.withCredentials = true;
+
+  useEffect(() => {
+    if (userData) {
+      // Calculate the balance by adding userData.balance and userData.profit
+      const totalBalance = userData.balance + userData.profit;
+      setBalance(totalBalance);
+    }
+  }, [userData]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -38,11 +46,11 @@ const Withdraw = () => {
       return;
     }
 
-    // Ensure the withdrawal amount doesn’t exceed available balance
-    // if (amountValue > balance) {
-    //     toast.error('Withdrawal amount exceeds available balance.');
-    //     return;
-    // }
+    //Ensure the withdrawal amount doesn’t exceed available balance
+    if (amountValue > balance) {
+        toast.error('Withdrawal amount exceeds available balance.');
+        return;
+    }
 
     setShowModal(true); // Show the modal when submitting
   };
@@ -101,7 +109,7 @@ const Withdraw = () => {
               <p className="bg-[#8a7e5e] px-4 py-3 rounded-lg">Withdrawal</p>
             </div>
             <p className="text-xl mt-8">
-              Available balance: ${userData.balance}
+              Available balance: ${balance}
             </p>
 
             <form onSubmit={handleSubmit}>
