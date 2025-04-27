@@ -39,7 +39,7 @@ const SidebarCourses = () => {
 
       if (response?.data.success) {
         toast.success(response?.data?.message);
-        window.location.assign("/login");
+        window.location.assign("/");
       }
     } catch (error) {
       if (error instanceof axios.AxiosError) {
