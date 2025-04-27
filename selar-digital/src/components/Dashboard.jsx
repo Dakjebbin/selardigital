@@ -284,7 +284,7 @@ const Dashboard = () => {
                           </div>
                         </div>
 
-                        <div className="p-2">
+                        <div className="text-right">
                           <h2> ${transaction.amount} </h2>
                           <p>
                             <span
