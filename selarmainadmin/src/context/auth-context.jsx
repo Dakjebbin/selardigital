@@ -10,7 +10,7 @@ const useAuthContext = () => {
 };
 
 const AuthContextProvider = ({ children }) => {
-  const baseUrl = import.meta.env.VITE_BASE_URL;
+  const baseUrl = "/api";
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(true);
 //   const [sessionExpired, setSessionExpired] = useState(false);

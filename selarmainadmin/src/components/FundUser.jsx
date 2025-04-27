@@ -22,7 +22,7 @@ const FundUser = () => {
   const [plan, setPlan] = useState('UBB')
   const [profit, setProfit] = useState(0);
 
-  const baseUrl = import.meta.env.VITE_BASE_URL;
+  const baseUrl = "/api";
 
 
   const handleFundingRequest = async (e) => {

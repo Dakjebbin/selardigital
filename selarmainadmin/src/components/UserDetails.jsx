@@ -25,7 +25,7 @@ const UserDetails = () => {
   // const [signalAvailable, setSignalAvailable] = useState("Signal")
   const [transaction, setTransaction] = useState([])
 
-  const baseUrl = import.meta.env.VITE_BASE_URL;
+  const baseUrl = "/api";
 
   axios.defaults.withCredentials = true;
 

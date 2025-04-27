@@ -12,7 +12,7 @@ const ForgotPassowrd = () => {
     const [loading, setLoading] = useState(false)
     const [Emailsent, setEmailSent] = useState("");
     const [code, setCode] = useState(false);
-    const baseUrl = import.meta.env.VITE_BASE_URL;
+    const baseUrl = "/api";
     const inputRefs = useRef([]);
 
     const handleInput = (e, index) => {

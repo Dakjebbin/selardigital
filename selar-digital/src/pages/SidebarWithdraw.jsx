@@ -21,7 +21,7 @@ const SidebarWithdraw = () => {
   const [open, setOpen] = useState(true);
   const [loggingOut, setLoggingOut] = useState(false);
 
-  const baseUrl = import.meta.env.VITE_BASE_URL;
+  const baseUrl = "/api";
 
   const handleLogout = async (e) => {
     e.preventDefault();

@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 const AdminDash = () => {
     const { userData } = useAuthContext();
     const [users, setUsers] = useState([]);
-    const baseUrl = import.meta.env.VITE_BASE_URL;
+    const baseUrl = "/api";
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
 

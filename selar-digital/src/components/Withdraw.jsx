@@ -13,7 +13,7 @@ const Withdraw = () => {
   const [setWithdrawalPending] = useState(false);
   const [balance, setBalance] = useState(0);
   const { userData } = useAuthContext();
-  const baseUrl = import.meta.env.VITE_BASE_URL;
+  const baseUrl = "/api";
   axios.defaults.withCredentials = true;
 
   useEffect(() => {

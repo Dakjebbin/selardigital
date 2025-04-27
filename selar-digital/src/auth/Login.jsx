@@ -11,7 +11,7 @@ const Login = () => {
     const [loading, setLoading] = useState(false);
     const [permissionError, setPermissionError] = useState(false);
 
-    const baseUrl = import.meta.env.VITE_BASE_URL;
+    const baseUrl = "/api";
     axios.defaults.withCredentials = true;
 
     const handleSubmit = async (e) => {

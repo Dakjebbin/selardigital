@@ -35,7 +35,7 @@ ChartJS.register(
 const Dashboard = () => {
   const { userData } = useAuthContext();
   const [transactions, setTransactions] = useState([]);
-  const baseUrl = import.meta.env.VITE_BASE_URL;
+  const baseUrl = "/api";
 
   const formatDate = (timestamp) => {
     const date = new Date(timestamp);

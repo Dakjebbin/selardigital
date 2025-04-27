@@ -13,7 +13,7 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const baseUrl = import.meta.env.VITE_BASE_URL;
+  const baseUrl = "/api";
   const Navigate = useNavigate();
 
   const handleSubmit = async (e) => {
