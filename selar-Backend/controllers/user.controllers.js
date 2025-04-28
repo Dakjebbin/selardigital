@@ -390,7 +390,7 @@ const forgotPassword = async (req, res) => {
 
     const mailOption = {
     //   from: process.env.SENDER_EMAIL,
-    from: "jebbinp@gmail.com",
+    from: "contact@selardigitalmarketplace.com",
       to: user.email,
       subject: "Reset Password",
       text: `
