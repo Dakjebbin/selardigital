@@ -12,7 +12,9 @@ const Details = () => {
             viewport={{ once: true, amount: 0.2 }}
             className="bg-white mb-5 px-4 py-3 rounded-md">
                 <p className='text-[#999797]'>You Can Email Us here</p>
-                <a href="mailto:contact@SelarDigitalMarketPlace">contact@SelarDigitalMarketPlace</a>
+                <a href="mailto:
+contact@selardigitalmarketplace.com">
+contact@selardigitalmarketplace.com</a>
             </motion.div>
 
 
