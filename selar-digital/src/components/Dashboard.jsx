@@ -36,6 +36,7 @@ const Dashboard = () => {
   const { userData } = useAuthContext();
   const [transactions, setTransactions] = useState([]);
   const baseUrl = "/api";
+  axios.defaults.withCredentials = true;
 
   const formatDate = (timestamp) => {
     const date = new Date(timestamp);

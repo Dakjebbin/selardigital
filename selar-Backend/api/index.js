@@ -21,7 +21,6 @@ app.use(cookieParser());
 app.use(cors({
     origin:[ "https://admin.selardigitalmarketplace.com", "https://www.selardigitalmarketplace.com"],
     credentials: true,
-   
 }))
 app.use("/auth", authRoutes)
 // app.use("/authKyc", kycRoutes);
