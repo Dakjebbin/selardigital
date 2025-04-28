@@ -45,6 +45,7 @@ export const validateUsers = async (req, res, next) => {
                   secure: true,
                   sameSite:"none",
                   maxAge: 30 * 60 * 1000,
+                   path: "/"
                  })
                   const { password, ...rest } = validuser._doc;
                     req.user = rest;
