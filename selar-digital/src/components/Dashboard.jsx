@@ -58,8 +58,6 @@ const Dashboard = () => {
       const response = await axios.get(`${baseUrl}/transactions/get-transactionAdmin/${userData._id}`, {
         withCredentials: true,
       })
-  
-      console.log(response);
       
       setTransactions(response.data.data);
     } catch (error) {

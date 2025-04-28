@@ -66,7 +66,7 @@ const ForgotPassowrd = () => {
                            error?.response?.data
                          );
                        } else {
-                         console.log("reg error => ", error);
+                         console.error("reg error => ", error);
                        }
             }finally{
                 setLoading(false)
@@ -115,11 +115,11 @@ const ForgotPassowrd = () => {
                 }
             }
                 if (error instanceof axios.AxiosError) {
-                    console.log(
+                    console.error(
                        error?.response?.data
                      );
                    } else {
-                     console.log("reg error => ", error);
+                     console.error("reg error => ", error);
                    }
             }
            
@@ -145,11 +145,11 @@ const ForgotPassowrd = () => {
                 }
             } catch (error) {
                  if (error instanceof axios.AxiosError) {
-                    console.log(
+                    console.error(
                        error?.response?.data
                      );
                    } else {
-                     console.log("reg error => ", error);
+                     console.error("reg error => ", error);
                    }
             }
 
