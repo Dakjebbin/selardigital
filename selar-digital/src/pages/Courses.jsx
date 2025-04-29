@@ -61,12 +61,16 @@ const Courses = () => {
 
               <div className="flex items-center">
                 <img className="mr-4" src={assets.books} alt="" />
-                <p className="text-lg">$250 to Earn</p>
+                <p className="text-lg text-center font-bold">$500 - $10,000</p>
               </div>
 
               <div className="flex items-center mt-1">
-                <img className="mr-4" src={assets.books} alt="" />
-                <p className="text-lg">$1,500 - $3,500</p>
+                {/* <img className="mr-4" src={assets.books} alt="" /> */}
+                <div>
+                <p className="text-lg">Min Profit - 20%</p>
+                <p className="text-lg">Max Profit - 5000%</p>
+                <p className="text-lg">Gift Bonus - $5,000</p>
+                </div>
               </div>
             </div>
           
@@ -95,12 +99,16 @@ const Courses = () => {
 
               <div className="flex items-center">
                 <img className="mr-4" src={assets.books} alt="" />
-                <p className="text-lg">$450 to Earn</p>
+                <p className="text-lg text-center font-bold">$10,000 - $50,000</p>
               </div>
 
               <div className="flex items-center mt-1">
-                <img className="mr-4" src={assets.books} alt="" />
-                <p className="text-lg">$4,500 - $6,500</p>
+                {/* <img className="mr-4" src={assets.books} alt="" /> */}
+                <div>
+                <p className="text-lg">Min Profit - 10%</p>
+                <p className="text-lg">Max Profit - 5000%</p>
+                <p className="text-lg">Gift Bonus - $250</p>
+                </div>
               </div>
            
           </div>
@@ -129,12 +137,16 @@ const Courses = () => {
 
               <div className="flex items-center">
                 <img className="mr-4" src={assets.books} alt="" />
-                <p className="text-lg">$850 to Earn</p>
+                <p className="text-lg text-center font-bold">$50,000 - $500,000</p>
               </div>
 
               <div className="flex items-center mt-1">
-                <img className="mr-4" src={assets.books} alt="" />
-                <p className="text-lg">$9,500 - $11,500</p>
+                {/* <img className="mr-4" src={assets.books} alt="" /> */}
+                <div>
+                <p className="text-lg">Min Profit - 15%</p>
+                <p className="text-lg">Max Profit - 5000%</p>
+                <p className="text-lg">Gift Bonus - $1,000</p>
+                </div>
               </div>
           </div>
         </motion.div>
@@ -162,12 +174,16 @@ const Courses = () => {
 
               <div className="flex items-center">
                 <img className="mr-4" src={assets.books} alt="" />
-                <p className="text-lg">$2000 to Earn</p>
+                <p className="text-lg text-center font-bold">$500,000 - $5,000,000</p>
               </div>
 
               <div className="flex items-center mt-1">
-                <img className="mr-4" src={assets.books} alt="" />
-                <p className="text-lg">$20,000 - $25,000</p>
+                {/* <img className="mr-4" src={assets.books} alt="" /> */}
+                <div>
+                <p className="text-lg">Min Profit - 20%</p>
+                <p className="text-lg">Max Profit - 5000%</p>
+                <p className="text-lg">Gift Bonus - $5,000</p>
+                </div>
               </div>
           </div>
         </motion.div>
