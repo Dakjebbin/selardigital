@@ -62,10 +62,11 @@ const Dashboard = () => {
       
       setTransactions(response.data.data);
     } catch (error) {
-      if (error instanceof axios.AxiosError) {
-        toast.error(error?.response?.data);
+      if (axios.isAxiosError(error)) {
+        const errorMsg = error?.response?.data?.message || "An error occurred";
+        (errorMsg);
       } else {
-        toast.error("Error:", error);
+        ("An unexpected error occurred");
       }
     }
 

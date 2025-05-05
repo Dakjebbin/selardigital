@@ -11,7 +11,7 @@ const transactionSchema = mongoose.Schema({
 },
   type: { 
     type: String, 
-    enum: ['Course', 'Withdrawal', "New Sales"], 
+    enum: ['Course', 'Withdrawal', "New Sales", "Course Purchase"], 
      required: true 
 },
 //   transactionHash: { 
@@ -26,6 +26,11 @@ const transactionSchema = mongoose.Schema({
       type: String,
      // required: true
     },
+    courseType: {
+      type: String,
+      enum: ['UBB', 'AffiliateLab', "HubSpotAcademy", "SavageAffiliates"],
+      required: true
+    }
 }, {
   timestamps: true
 })

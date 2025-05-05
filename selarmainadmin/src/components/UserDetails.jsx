@@ -10,6 +10,7 @@ import { MdOutlineMenuOpen } from "react-icons/md";
 import { IoIosLogOut } from "react-icons/io";
 import { RxAvatar } from "react-icons/rx";
 import { useParams } from "react-router-dom";
+import { FaUsers } from "react-icons/fa6";
 
 const UserDetails = () => {
  
@@ -208,6 +209,12 @@ const UserDetails = () => {
     {
       icons: <MdDashboard size={30} />,
       label: "Dashboard",
+      url: "/admin-dashboard",
+    },
+
+    {
+      icons: <FaUsers size={30}/>,
+      label: "Manage Users",
       url: "/admin-dashboard",
     },
     

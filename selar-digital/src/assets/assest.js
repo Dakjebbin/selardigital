@@ -1,4 +1,5 @@
 import line from "./line.png";
+// import white_logo from "./selar-white.jpg"
 import background from "./stelar-1.jpg";
 import menu_button from "./menu_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24 (1).svg";
 import close_btn from "./close_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24 (1).svg";
@@ -18,6 +19,7 @@ import shopee from "./Shopee-Logo-200X100.png";
 import aliexpress from "./AliExpress_160X90.png"
 import trip from "./Trip-com-Logo-200X100.png";
 import agoda from "./Agoda_logo_160x90.png"
+import shopify from "./shopify logo.png"
 
 
 
@@ -25,6 +27,7 @@ import agoda from "./Agoda_logo_160x90.png"
 export const assets = {
     background,
     shopee,
+    shopify,
     aliexpress,
     trip,
     agoda,

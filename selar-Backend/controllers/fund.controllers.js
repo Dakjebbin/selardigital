@@ -74,6 +74,78 @@ const withdrawal = async (req, res) => {
     }
 }
 
+const purchase = async (req, res) => {
+    const { amount, courseType} = req.body;
+    const validUser = req.user;
+
+    if (!validUser) {
+        return res.status(401).json({ message: 'Unauthorized' });
+     }
+
+     if (!amount || amount <= 0) {
+        return res.status(400).json({ 
+            success:false,
+            message: 'Invalid amount okay oh' 
+        });
+     }
+
+    //  await body('paymentDetail').notEmpty().withMessage('Payment detail is required').run(req);
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    try {
+        const user = await User.findById(validUser._id).exec();
+
+        if (!user) {
+            return res.status(404).json({ success: false, message: "User not found" });
+        }
+
+        // const totalBalance = user.balance + user.profit;
+
+        if (amount > user.balance) {
+            return res.status(400).json({ 
+                success:false,
+                message: 'Insufficient balance'
+             });
+          }
+  
+          const validCourseTypes = {
+            UBB: { min: 500, max: 10000 },
+            AffiliateLab: { min: 10001, max: 50000 },
+            HubSpotAcademy: { min: 50001, max: 500000 },
+            SavageAffiliates: { min: 500001, max: 5000000 }
+        };
+
+        const range = validCourseTypes[courseType];
+        if (!range || amount < range.min || amount > range.max) {
+            return res.status(400).json({
+                success: false,
+                message: `Amount ${amount} is not valid for course type "${courseType}"`
+            });
+        }
+
+        user.balance -= amount;
+
+       await user.save();
+       
+        
+       const transaction = new Transaction({
+        user: user._id,  // Storing the user's _id from the database
+        amount,
+        type: "Course Purchase",
+        status: 'Completed',
+        courseType
+    });
+    await transaction.save();
+
+       res.status(200).json({ success: true, message: 'Course Purchase successful' });
+    } catch (error) {
+        res.status(500).json({ success: false, message: 'Internal server error'+ error.message });
+    }
+}
+
 const fundUser = async (req, res) => {
     const {id} = req.params;
    let {amount, plan} = req.body;
@@ -145,4 +217,4 @@ const fundUser = async (req, res) => {
     }
 }
 
-export { withdrawal, fundUser };
+export { withdrawal, fundUser, purchase };

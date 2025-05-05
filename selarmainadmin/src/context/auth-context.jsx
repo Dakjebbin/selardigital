@@ -40,7 +40,7 @@ const AuthContextProvider = ({ children }) => {
             setUserData(null);
           }
         } else {
-          ("Session error =>", error);
+          ("Session error =>",  error);
         }
       } finally {
         setLoading(false);

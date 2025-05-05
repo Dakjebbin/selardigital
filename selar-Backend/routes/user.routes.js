@@ -19,6 +19,7 @@ const router = express.Router();
 router.post("/register", register)
 router.post("/login", login)
 router.get("/users", validateUsers,rolevalidation, userDetails )
+router.get("/users-client", validateUsers, userDetails )
  router.get("/users/:id", validateUsers, userDetail )
 router.get("/validate", validateUsers, validate)
 // router.patch("/approvedStatus/:id", validateUsers, rolevalidation, updateApprovedStatus)

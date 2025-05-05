@@ -9,6 +9,7 @@ import ForgotPassowrd from './Pages/ForgotPassword.jsx';
 import SidebarCourses from "./components/Sidebar.jsx"
 import UserDetails from './components/UserDetails.jsx';
 import FundUser from './components/FundUser.jsx';
+import Dashboard from './components/Dashboard.jsx';
 
 
 const router = createBrowserRouter([
@@ -27,6 +28,9 @@ const router = createBrowserRouter([
   },{
     path: "/admin-dashboard/Fund/:Id",
     element: <FundUser/>
+  },{
+    path: "/dashboard",
+    element: <Dashboard/>
   }
 ])
 

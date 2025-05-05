@@ -40,7 +40,7 @@ const Login = () => {
                 toast.success("Login Successfully");
                 setEmail('');
                  setPassword('');
-                window.location.assign("/admin-dashboard");
+                window.location.assign("/dashboard");
             } else {
                 toast.error("Login Failed");
             }

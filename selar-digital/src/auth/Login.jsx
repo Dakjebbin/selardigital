@@ -3,13 +3,16 @@ import { assets } from '../assets/assest'
 import { Link} from 'react-router-dom'
 import { motion } from "motion/react"; //eslint-disable-line
 import toast from 'react-hot-toast';
+import eye from "../assets/eye.svg";
+import eyeOff from "../assets/eye-off.svg";
 import axios from 'axios';
 
 const Login = () => {
     const [email, setEmail] = useState("");
+    const [showPassword, setShowPassword] = useState(false);
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
-    const [permissionError, setPermissionError] = useState(false);
+    // const [permissionError, setPermissionError] = useState(false);
 
     const baseUrl = "/api";
     axios.defaults.withCredentials = true;
@@ -26,7 +29,7 @@ const Login = () => {
             return;
         }
         setLoading(true);
-        setPermissionError(false);
+        // setPermissionError(false);
         try {
             const response = await axios.post(`${baseUrl}/auth/login`, {
                 email,
@@ -46,11 +49,11 @@ const Login = () => {
         } catch (error) {
             if (error.response) {
                 if (error.response.status === 404) {
-                    toast.error('Email or Password is incorrect'); // Invalid credentials
+                    toast.error(error.response); // Invalid credentials
                   } else if (error.response.status === 409) {
                     toast.error('Incorrect credentials or account issues'); // Conflict error (e.g., email already taken)
                   } else if (error.response.status === 403) {
-                    setPermissionError(true);
+                    // setPermissionError(true);
                   } else {
                     toast.error('An error occurred. Please try again later.'); // Generic error
                   }
@@ -123,7 +126,20 @@ const Login = () => {
                        
 
                         <label className='text-xl mb-3'> Password  </label>
-                        <input value={password} onChange={(e) => setPassword(e.target.value)} className='border shadow-md shadow-[#a7a6a6] border-[#aaa9a9] rounded-md px-5 py-3 md:w-96 w-[100%] mb mb-10 outline-none' type="password" name="" id="password" />
+                        <div className='flex items-center justify-between border shadow-md shadow-[#a7a6a6] border-[#aaa9a9] rounded-md px-5 py-3 md:w-96 w-[100%] mb mb-10 outline-none'>
+                        <input 
+                        value={password}
+                        className='outline-none w-[90%] h-full' 
+                        onChange={(e) => setPassword(e.target.value)} 
+                        name="" 
+                        id="password"
+                        type={showPassword ? "text" : "password"}
+                        />
+                         <div className="eye-button " onClick={() => setShowPassword(!showPassword)}
+                        aria-label={showPassword ? "Hide password" : "Show password"}>
+                        <img src={showPassword ? eye : eyeOff} alt={showPassword ? "Hide password" : "Show password"} />
+                      </div>
+                      </div>
                       
                         </motion.div>
 
@@ -132,7 +148,7 @@ const Login = () => {
                         </div>
                     </form>
 
-                    {permissionError && (
+                    {/* {permissionError && (
         <div className="fixed inset-0 flex items-center justify-center bg-[#ffffff48] bg-opacity-50 z-50">
           <div className="bg-[#d6d4d4] p-6 rounded-lg w-80 max-w-full">
             <h2 className="text-xl font-bold text-center text-red-500">Access Denied</h2>
@@ -145,7 +161,7 @@ const Login = () => {
             </div>
           </div>
         </div>
-      )}
+      )} */}
 
 
                     <Link to="/forgotPassword">

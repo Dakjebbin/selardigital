@@ -3,27 +3,179 @@ import { assets } from "../assets/assest";
 import { useAuthContext } from "../context/auth-context";
 import { MdDashboard } from "react-icons/md";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
-import { FaBook, FaSpinner } from "react-icons/fa";
+import toast from "react-hot-toast";
+import { FaSpinner } from "react-icons/fa";
 import axios from "axios";
 import { MdOutlineMenuOpen } from "react-icons/md";
-// import { PiHandWithdrawBold } from "react-icons/pi";
-// import { IoIosContact } from "react-icons/io";
 import { IoIosLogOut } from "react-icons/io";
-// import { IoMdWallet } from "react-icons/io";
+import { RxAvatar } from "react-icons/rx";
+import { useParams } from "react-router-dom";
 import { FaUsers } from "react-icons/fa6";
-import toast from "react-hot-toast";
+import DashChart from "./DashChart";
+import { Component } from "./Shadcn";
 
-// import Dashboard from "./Dashboard";
-// import Courses from "./Courses"
-import AdminDash from "./AdminDash";
-
-const SidebarCourses = () => {
-  axios.defaults.withCredentials = true;
-    const { userData } = useAuthContext();
+const Dashboard = () => {
+ 
+  const { userData } = useAuthContext();
   const [open, setOpen] = useState(true);
   const [loggingOut, setLoggingOut] = useState(false);
+  const [loading, setLoading] = useState(true);
+  // const [updated, setUpdated] = useState(false);
+  const { Id } = useParams();
+  const [userDetails, setUserDetails] = useState(null);
 
-  const baseUrl = "/api";
+
+
+   const baseUrl = "/api";
+  //const baseUrl = import.meta.env.VITE_BASE_URL
+
+  axios.defaults.withCredentials = true;
+
+//   const handleSelectChange =(e) => {
+//     setIsApproved(e.target.value)
+//   }
+  
+//   const handleApprovedStatus = async () => {
+//     try {
+//         const response = await axios.patch(`${baseUrl}/auth/approvedStatus/${Id}`, 
+//             { isApproved },
+//             {
+//             withCredentials: true,
+//         })
+        
+//         if (response.status === 201) {
+//           toast.success("User's Approval status has been updated");
+          
+//         }
+
+//         setUserDetails((prevDetails) => ({
+//           ...prevDetails,
+//           isApproved: isApproved, // Update only the approval status
+//         }));
+
+//     } catch (error) {
+//         if (error instanceof axios.AxiosError) {
+//             toast.error(error?.response?.data);
+//         } else {
+//             toast.error("Error fetching users: ", error.message);
+//         }
+//     }     
+//   }
+
+  // const handleStatusUpdate = async () => {
+    
+  //   try {
+  //     const response = await axios.patch(`${baseUrl}/auth/status/${Id}`,{
+  //       status
+  //     },{
+  //       withCredentials: true,
+  //     })
+
+  //     if (response.status === 201) {
+  //       toast.success("User's status has been updated");
+        
+  //     }
+      
+  //     setUserDetails((prevStatus) => ({
+  //       ...prevStatus,
+  //       status: status, // Update only the status
+  //     }));
+  //   } catch (error) {
+  //     if (error instanceof axios.AxiosError) {
+  //       toast.error(error?.response?.data);
+  //   } else {
+  //       toast.error("Error fetching users: ", error.message);
+  //   }
+  //   }
+  // }
+
+  // const handleSignalUpdate = async () => {
+   
+    
+  //   try {
+  //     setUpdated(true);
+  //     const response = await axios.patch(`${baseUrl}/auth/signal/${Id}`,{
+  //       signalAvailable
+  //     },{
+  //       withCredentials: true,
+  //     })
+
+  //     if (response.status === 200) {
+  //       toast.success("User's Signal Status has been updated");
+
+  //     }
+      
+  //     setUserDetails((prevStatus) => ({
+  //       ...prevStatus,
+  //       signalAvailable, // Update only the status
+  //     }));
+  //   } catch (error) {
+  //     if (error instanceof axios.AxiosError) {
+  //       toast.error(error?.response?.data);
+  //   } else {
+  //       toast.error("Error fetching users: ", error.message);
+  //   }
+  //   } finally {
+  //     setUpdated(false);
+  //   }
+  // }
+
+//   useEffect(() => {
+//   const fetchTransaction = async () => {
+//       try {
+//         const response = await axios.get(`${baseUrl}/transactions/get-transactionAdmin/${Id}`,{
+//           withCredentials:true
+//         })
+
+//         setTransaction(response.data.data)
+        
+//       } catch (error) {
+//         if (error instanceof axios.AxiosError) {
+//           toast.error(error?.response?.data?.message || "Something went wrong" );
+//       } else {
+//           toast.error("Error");
+//       }
+//       }
+//   }
+
+//   fetchTransaction();
+  
+//   },[Id])
+
+
+
+//     const fetchUserDetails = async () => {
+//         try {
+//             const response = await axios.get(`${baseUrl}/auth/users/${Id}`, { withCredentials: true });
+//             setUserDetails(response.data.user);
+//             setLoading(false);
+//         } catch (error) {
+//             if (error instanceof axios.AxiosError) {
+//                 toast.error(error?.response?.data?.message || "Something went wrong" );
+//             } else {
+//                 toast.error("Error fetching users: ", error.message);
+//             }
+//         }
+//     }; 
+
+//     useEffect(() => {
+//         fetchUserDetails();
+//     },
+//  [Id, baseUrl]);
+
+  useEffect(() => {
+    // Ensure that userData exists and we can safely check for isAdmin
+    if (userData !== null) {
+        if (userData.isAdmin !== "ADMIN") {
+            toast.error("Unauthorized Access");
+            window.location.assign("/");
+        } else {
+            // If the user is an admin, stop loading
+            setLoading(false);
+        }
+    }
+}, [userData]); 
+
 
   const handleLogout = async (e) => {
     e.preventDefault();
@@ -59,14 +211,15 @@ const SidebarCourses = () => {
       icons: <MdDashboard size={30} />,
       label: "Dashboard",
       url: "/admin-dashboard",
-    }
-  ,
+    },
+
     {
       icons: <FaUsers size={30}/>,
       label: "Manage Users",
       url: "/admin-dashboard",
     },
-   
+    
+    
   ];
 
   const [isNavActive, setIsNavActive] = useState(false);
@@ -91,11 +244,14 @@ const SidebarCourses = () => {
   const handleToggle = () => {
     setIsNavActive(!isNavActive);
   };
+  
+  if (loading) {
+    return <div>Loading User details...</div>;
+}
 
   return (
     <div className="md:flex">
-    
-    {userData && (
+      {userData && (
         <>
           {/* Sidebar for Desktop */}
           <nav
@@ -103,7 +259,7 @@ const SidebarCourses = () => {
           >
             {/* Header */}
             <div className="px-3 py-2 h-20 flex justify-between items-center">
-              <img src={assets.logo} alt="logo" className={`${open ? `w-20` : `w-0`} rounded-md`} />
+              <img src={assets.logo} alt="logo" className={`${open ? `w-10` : `w-0`} rounded-md`} />
               <div>
                 <MdOutlineMenuOpen
                   size={34}
@@ -117,8 +273,8 @@ const SidebarCourses = () => {
             <ul className="flex-1">
               {menuitems.map((item, index) => (
                 <li key={index} className="px-1 py-2 my-2 relative duration-300 flex gap-2 items-center group">
-                  <a className=" hover:bg-white flex justify-between items-center rounded-md cursor-pointer pt-1 pl-2 pr-32" href={item.url}>
-                    <div className="mr-4">{item.icons}</div>
+                  <a className=" hover:bg-white rounded-md cursor-pointer pt-1 pl-2 pr-32" href={item.url}>
+                    <div>{item.icons}</div>
                     <p className={`${!open && `w-0 translate-x-24`} duration-500 overflow-hidden`}>
                       {item.label}
                     </p>
@@ -135,10 +291,10 @@ const SidebarCourses = () => {
             {/* Footer */}
             <div className="flex items-center gap-2 px-3 py-2">
               <div>
-                <Avatar>
+                 <Avatar>
                   <AvatarImage src="https://github.com/shadcn.png" />
                   <AvatarFallback>WW</AvatarFallback>
-                </Avatar>
+                </Avatar> 
               </div>
               <div className={`leading-5 ${!open && `w-0 translate-x-24`} duration-500 overflow-hidden`}>
                 <p className="flex items-center mr-3">{userData?.username}</p>
@@ -176,16 +332,16 @@ const SidebarCourses = () => {
 
             <div
               ref={mobileNavRef}
-              className={`fixed top-0 right-0 w-64 h-full z-50 bg-[#A69051] transform transition-all duration-500 ${isNavActive ? "translate-x-0" : "translate-x-full"}`}
+              className={`fixed top-0 right-0 w-64 h-full bg-[#FFBBB8] transform transition-all duration-500 ${isNavActive ? "translate-x-0" : "translate-x-full"}`}
             >
               <div className="ml-5 mt-4">
-                <img src={assets.logo} alt="logo" className="w-20 rounded-md" />
+                <img src={assets.logo} alt="logo" className="w-14 rounded-md" />
               </div>
 
               <nav>
                 <ul>
                   {menuitems.map((item, index) => (
-                    <li key={index} className="p-3 hover:bg-white hover:rounded-md  cursor-pointer">
+                    <li key={index} className="p-5 hover:bg-white hover:rounded-md hover:m-2 cursor-pointer">
                       <a href={item.url}>
                         <div>{item.icons}</div>
                         <p>{item.label}</p>
@@ -194,16 +350,16 @@ const SidebarCourses = () => {
                   ))}
                 </ul>
 
-                <div className="flex items-center gap-2 pt-3 pl-4">
+                <div className="flex items-center gap-2 pt-4 pl-4">
                   <div>
-                    <Avatar>
+                     <Avatar>
                       <AvatarImage src="https://github.com/shadcn.png" />
                       <AvatarFallback>WW</AvatarFallback>
-                    </Avatar>
+                    </Avatar> 
                   </div>
                   <div className="leading-5">
-                 <p className="flex items-center mr-3">{userData?.username}</p>
-                    <p className="text-xs uppercase">{userData?.email}</p> 
+                    <p className="flex items-center mr-3">{userData?.username}</p>
+                    <p className="text-xs uppercase">{userData?.email}</p>
 
  
                     <button 
@@ -234,14 +390,26 @@ const SidebarCourses = () => {
           <div
             className={`flex-1 p-5 overflow-auto  md:max-h-screen transition-all duration-500 ${open ? "ml-4" : "ml-5"}`}
           >
-             <AdminDash/>
-          </div>
+       
+       <div>
+            <div>
+            <p className="text-xl mb-4 font-semibold">Dashboard</p>
 
+                <div className="flex justify-between items-center">
+            <DashChart/>
+            <Component/>
+
+            </div>
+            </div>
+        
+       </div>
+          </div>
         </>
-    )}
+      )}
+   
     </div>
    
   );
 };
 
-export default SidebarCourses;
+export default Dashboard;

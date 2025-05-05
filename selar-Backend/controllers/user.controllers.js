@@ -112,12 +112,12 @@ const login = async (req, res) => {
       return;
     }
 
-    if (userExists.isApproved !== "Approved") {
-      return res.status(403).json({
-        success: false,
-        message: "User not approved",
-      });
-    }
+    // if (userExists.isApproved !== "Approved") {
+    //   return res.status(403).json({
+    //     success: false,
+    //     message: "User not approved",
+    //   });
+    // }
 
     // create jwt tokens and cookies
 
@@ -520,52 +520,8 @@ const resetPassword = async (req, res) => {
   }
 };
 
-//NOt Using for now
-// const updateSignal = async (req, res) => {
-//     const {id} = req.params;
-//     const {signalAvailable} = req.body;
 
-//     try {
 
-//         if (!signalAvailable){
-//             return res.status(404).json({
-//                 success:false,
-//                 message: "Signal Is required"
-//             })
-//         }
-
-//         const validEnum = ["Signal", "No Signal"]
-//         if (!validEnum.includes(signalAvailable)) {
-//             return res.status(403).json({
-//                 success: false,
-//                 message: `Invalid signal status. Allowed statuses are: ${validEnum.join(',')}`
-//             });
-//         }
-
-//     const user = await User.findByIdAndUpdate(id,{
-//         signalAvailable
-//     },{new:true}).exec();
-
-//     if (!user) {
-//         return res.status(400).json({
-//             success: false,
-//             message: "Incorrect Signal Enum"
-//         })
-//     }
-
-//     res.status(200).json({
-//         success:true,
-//         message:"Signal Status Successfully Updated"
-//     })
-
-//     } catch (error) {
-//         res.status(500).json({
-//             success:false,
-//             message: "Internal Server Error"
-//         })
-//     }
-
-// }
 
 export {
   register,
@@ -577,5 +533,5 @@ export {
   validateOtp,
   forgotPassword,
   updateApprovedStatus,
-  logout,
+  logout
 };

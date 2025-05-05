@@ -19,7 +19,7 @@ const db = process.env.MONGODB_LINK
 app.use(express.json({limit:'12mb'}));
 app.use(cookieParser());
 app.use(cors({
-    origin:[ "https://admin.selardigitalmarketplace.com", "https://www.selardigitalmarketplace.com"],
+    origin:[ "https://admin.selardigitalmarketplace.com", "https://www.selardigitalmarketplace.com", "http://localhost:5173"],
     credentials: true,
    
 }))

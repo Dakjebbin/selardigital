@@ -4,10 +4,13 @@ import { Link, useNavigate } from "react-router-dom";
 import { motion } from "motion/react"; //eslint-disable-line
 import axios from "axios";
 import toast from "react-hot-toast";
+import eye from "../assets/eye.svg";
+import eyeOff from "../assets/eye-off.svg";
 
 const Register = () => {
   const [fullname, setFullname] = useState("");
   const [username, setUsername] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [phonenumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
@@ -181,20 +184,28 @@ const Register = () => {
               />
 
               <label className="text-lg mb-1"> Password </label>
-              <input
-                onChange={(e) => setPassword(e.target.value)}
-                value={password}
-                className="border shadow-md shadow-[#a7a6a6] border-[#aaa9a9] rounded-md px-5 py-3 md:w-96 w-[100%]  mb-3 outline-none"
-                type="password"
-                name=""
-                id=""
-              />
+
+
+              <div className='flex items-center justify-between border shadow-md shadow-[#a7a6a6] border-[#aaa9a9] rounded-md px-5 py-3 md:w-96 w-[100%] mb mb-10 outline-none'>
+                        <input 
+                        value={password}
+                        className='outline-none w-[90%] h-full' 
+                        onChange={(e) => setPassword(e.target.value)} 
+                        name="" 
+                        id="password"
+                        type={showPassword ? "text" : "password"}
+                        />
+                         <div className="eye-button " onClick={() => setShowPassword(!showPassword)}
+                        aria-label={showPassword ? "Hide password" : "Show password"}>
+                        <img src={showPassword ? eye : eyeOff} alt={showPassword ? "Hide password" : "Show password"} />
+                      </div>
+                      </div>
             </motion.div>
 
             <div className="flex items-center">
               <input type="checkbox" required name="" id="" />
               <p className="my-3 ml-2 sm:text-lg text-base">
-                I have Agreed to the Terms & Conditions
+                I have Agreed to the <Link to="/terms" onClick={()=> scrollX(0,0)}> Terms & Conditions </Link>
               </p>
             </div>
 
