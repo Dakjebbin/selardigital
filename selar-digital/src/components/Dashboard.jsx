@@ -70,6 +70,8 @@ const Dashboard = () => {
       })
       
       setTransactions(response.data.data);
+      console.log(response.data.data);
+      
     } catch (error) {
       if (axios.isAxiosError(error)) {
         const errorMsg = error?.response?.data?.message || "An error occurred";
@@ -84,8 +86,6 @@ const Dashboard = () => {
   useEffect(() => {
     fetchTransactions()
   },[userData?._id]);
-  
-
   
 
   const profitData = {
@@ -265,7 +265,7 @@ const Dashboard = () => {
 <DonutChartCard/>
 <TeamProgressCard/>
 </div>
-
+{/* 
      { depositModal && (
        <div className="fixed inset-0 flex items-center justify-center bg-[#00000060] z-50">
                 <div className="bg-white rounded-xl shadow-lg">
@@ -297,7 +297,7 @@ const Dashboard = () => {
                   </div>
                 </div>
               </div>
-            )}
+            )} */}
     </div>
   );
 };

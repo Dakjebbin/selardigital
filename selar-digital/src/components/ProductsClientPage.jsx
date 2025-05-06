@@ -11,7 +11,7 @@ const ProductsClientPage = () => {
         className="text-[#59486e] font-bold"
         size={30}
       />
-      <span> Products</span>
+      <span> AI EMPLOYEE</span>
     </div>
     <section className="flex flex-wrap gap-6 m-auto w-[90%]">
       <motion.div
@@ -23,22 +23,19 @@ const ProductsClientPage = () => {
       >
         
           <div>
-            <img className="rounded-md" loading="lazy" src={assets.course_1} alt="" />
+            <img className="rounded-md" loading="lazy" src={assets.grok} alt="" />
           </div>
 
           <div className=" text-white">
             <p className="font-bold text-lg text-center my-3">
-              The Ultimate Branding BluePrint (UBB)
+              The Grok AI
             </p>
-            <p className="text-[#dad3d3] mb-2">
-              Visual Branding, Messaging, and creating brand consistency
-            </p>
-            <p className="text-lg underline mb-2">Basic</p>
+           
 
-            {/* <div className="flex items-center">
+         <div className="flex items-center">
              <img className="mr-4" src={assets.books} alt="" /> 
-              <p className="text-lg text-center font-bold">$500 - $10,000</p>
-            </div> */}
+              <p className="text-lg text-center font-bold">$3,000</p>
+            </div> 
 
             {/* <div className="flex items-center mt-1">
               <img className="mr-4" src={assets.books} alt="" />
@@ -60,25 +57,22 @@ const ProductsClientPage = () => {
         className="grow basis-[200px] flex flex-col justify-between bg-[#FCEFCB] px-5 py-5 rounded-tl-3xl rounded-br-3xl"
       >
      
-          <img className="rounded-md" loading="lazy" src={assets.course_2} alt="" />
+          <img className="rounded-md" loading="lazy" src={assets.convo} alt="" />
       
 
         <div>
        
             <p className="font-bold text-lg text-center my-3">
-              Affiliate Lab
+              ConvoGPT
             </p>
-            <p className="text-[#464545] mb-2">
-              SEO-Based affiliate sites and flipping them for profit{" "}
-            </p>
-            <p className="text-lg underline mb-2">Standard</p>
+           
             
 
-            {/* <div className="flex items-center">
+          <div className="flex items-center">
               <img className="mr-4" src={assets.books} alt="" />
-              <p className="text-lg text-center font-bold">$10,000 - $50,000</p>
+              <p className="text-lg text-center font-bold">$1800</p>
             </div>
-
+{/* 
             <div className="flex items-center mt-1">
              <img className="mr-4" src={assets.books} alt="" />
               <div>
@@ -86,7 +80,7 @@ const ProductsClientPage = () => {
               <p className="text-lg">Max Profit - 5000%</p>
               <p className="text-lg">Gift Bonus - $250</p>
               </div>
-            </div> */}
+            </div>  */}
          
         </div>
       </motion.div>
@@ -99,26 +93,22 @@ const ProductsClientPage = () => {
         className="grow basis-[200px] flex flex-col justify-between bg-[#FCEFCB] px-5 py-5 rounded-tr-3xl rounded-bl-3xl"
       >
        
-          <img className="rounded-md" loading="lazy" src={assets.course_3} alt="" />
+          <img className="rounded-md" loading="lazy" src={assets.socialflow} alt="" />
        
 
         <div>
        
             <p className="font-bold text-lg text-center my-3">
-              HubSpot Academy
+              Social flow
             </p>
-            <p className="text-[#464545] mb-2">
-              Focus: Intro to affiliate marketing and how to get started
-            </p>
-            <p className="text-lg underline mb-2">Premium</p>
+         
 
-
-            {/* <div className="flex items-center">
+            <div className="flex items-center">
               <img className="mr-4" src={assets.books} alt="" />
-              <p className="text-lg text-center font-bold">$50,000 - $500,000</p>
+              <p className="text-lg text-center font-bold">$2,000</p>
             </div>
 
-            <div className="flex items-center mt-1">
+            {/* <div className="flex items-center mt-1">
                <img className="mr-4" src={assets.books} alt="" />
               <div>
               <p className="text-lg">Min Profit - 15%</p>
@@ -137,25 +127,22 @@ const ProductsClientPage = () => {
         className="grow flex flex-col justify-between basis-[200px] bg-[#A69051] px-5 py-5 rounded-tl-3xl rounded-br-3xl"
       >
    
-          <img className="rounded-md" loading="lazy" src={assets.course_4} alt="" />
+          <img className="rounded-md" loading="lazy" src={assets.icp} alt="" />
    
 
         <div className=" text-white">
  
             <p className="font-bold text-lg text-center my-3">
-              Savage Affiliates
+                THE ICP BOT
             </p>
-            <p className="text-[#dbd9d9] mb-2">
-              Focus: Funnels, Paid Ads, SEO, email marketing
-            </p>
-            <p className="text-lg underline mb-2">Legendary</p>
+           
 
-{/* 
+
             <div className="flex items-center">
               <img className="mr-4" src={assets.books} alt="" />
-              <p className="text-lg text-center font-bold">$500,000 - $5,000,000</p>
+              <p className="text-lg text-center font-bold">$1900</p>
             </div>
-
+{/* 
             <div className="flex items-center mt-1">
                <img className="mr-4" src={assets.books} alt="" /> 
               <div>
@@ -183,7 +170,7 @@ const ProductsClientPage = () => {
         <div>
             <img src={assets.ai_bot} alt="" />
 
-            <p className='bg-[#FCEFCB] inline-block text-xl font-semibold px-3 py-2 rounded-xl mb-3'>ChatGPT (Ai Bot)</p>
+            <p className='bg-[#FCEFCB] inline-block text-xl font-semibold px-3 py-2 rounded-xl mb-3'>Sales Optimizer Bot</p>
             <p>Boost your sales Capacity with our optimized AI Bot</p>
         </div>
   </div>

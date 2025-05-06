@@ -1,6 +1,6 @@
 import User from "../models/user.model.js";
 import Transaction from "../models/transaction.model.js";
-// import cloudinary from "../utils/cloudinary.js";
+import cloudinary from "../utils/cloudinary.js";
 
 
 const updateProfit = async (req, res) => {
@@ -121,63 +121,138 @@ const getTransactionsAdmin = async (req, res) => {
 }
 
 
-// const imageUpload = async (req, res) => {
-//     const { image, type, amount } = req.body; 
-//     const validUser = req.user;
 
-//     if (!image) {
-//         return res.status(400).json({ success: false, message: 'No Image Data received' });
+const Deposit = async (req, res) => {
+    const {  paymentMethod, amount, image } = req.body;  // Default status to "pending"
+
+    const validUser = req.user;
+
+  
+    if (!paymentMethod || !amount || !image) {
+      return res.status(400).json({
+        success: false,
+        message: "PaymentMethod, amount, and image are required"
+      });
+    }
+
+    if ( amount <= 0) {
+        return res.status(400).json({
+          success: false,
+          message: "Amount must be greater than 0"
+        });
+      }
+      
+  
+    try {
+     
+  
+      const user = await User.findById(validUser._id).exec();
+      if (!user) {
+        return res.status(404).json({
+          success: false,
+          message: "User not found"
+        });
+      }
+
+      const result = await cloudinary.uploader.upload(image, {
+        folder: 'payments/proofs',
+       public_id: `${validUser.username}-${Date.now()}`
+      });
+  
+      const newTransaction = new Transaction({
+        user: validUser._id, 
+        type: "Deposit",    
+        amount,
+        paymentMethod,
+        imageUrl: result.secure_url,
+        status: "Pending",  // Use the status from the request
+      });
+  
+      await newTransaction.save();
+
+      
+  
+      res.status(200).json({
+        success: true,
+        message: "Transaction created successfully",
+        data: newTransaction
+      });
+    } catch (error) {
+      res.status(500).json({
+        success: false,
+        message: "Internal Server Error: " + error.message
+      });
+    }
+  };
+
+//   const updateTransactionStatus = async (req, res) => {
+//     const { tid } = req.params; // Expecting 'id' in params now
+//     const { status } = req.body;
+  
+//     // Validate required fields
+//     if (!status) {
+//       return res.status(400).json({ success: false, message: "Status is required" });
 //     }
-
+  
+//     const validStatuses = ["Pending", "Success", "Failed"];
+//     if (!validStatuses.includes(status)) {
+//       return res.status(400).json({ success: false, message: `Invalid status. Allowed values: ${validStatuses.join(", ")}` });
+//     }
+  
 //     try {
-//         // Upload image to Cloudinary
-//         const result = await cloudinary.uploader.upload(image, {
-//             folder: 'payments/proofs',
-//             public_id: validUser.email,
-//         });
+//       // Find transaction by the custom `id` field
+//       const updatedTransaction = await transactionModel.findOneAndUpdate(
+//         { tid }, // Find by custom 'id' field
+//         { status },
+//         { new: true } // Return the updated transaction
+//       );
 
-//         const optimizeUrl = cloudinary.url(result.public_id, {
-//             fetch_format: 'auto',
-//             quality: 'auto'
-//         });
+//       if (!updatedTransaction) {
+//         return res.status(404).json({ success: false, message: "Transaction not found" });
+//       }
 
-//         const autoCropUrl = cloudinary.url(result.public_id, {
-//             crop: 'auto',
-//             gravity: 'auto',
-//             width: 500,
-//             height: 500,
-//         });
+//       const user = await userModel.findOne({ username: updatedTransaction.username }).exec()
 
-//         // Save the transaction with the image URL, type, and amount
-//         const newTransaction = new Transaction({
-//             user: validUser.email,
-//             type:  type || 'Course',  // Set type (default if missing)
-//             amount: amount || 0,  // Set amount (default if missing)
-//             imageUrl: result.secure_url,
-//             optimizedImageUrl: optimizeUrl,  // Optimized image URL
-//             croppedImageUrl: autoCropUrl,
-//             status: 'Pending', 
-//         });
+//       if (!user) {
+//         return res.status(404).json({ success: false, message: "User not found" });
+//       }
 
-//         await newTransaction.save();
+//       if(updatedTransaction.type === 'Deposit' && updatedTransaction.status === 'Success') {
+//         const amount = parseFloat(updatedTransaction.amount);
+//         if (isNaN(amount)) {
+//           return res.status(400).json({ success: false, message: "Invalid transaction amount" });
+//         }
+//         user.balance = parseFloat(user.balance) + amount;
+//         await user.save(); 
+//       }
 
-//         // Respond with the secure URL of the uploaded image
-//         res.status(200).json({
-//             success: true,
-//             message: 'Image uploaded successfully',
-//             url: result.secure_url,
-//         });
+//       if (updatedTransaction.type === 'Withdrawal' && updatedTransaction.status === 'Success') {
+//         const amount = parseFloat(updatedTransaction.amount);
+//         if (isNaN(amount)) {
+//           return res.status(400).json({ success: false, message: "Invalid transaction amount" });
+//         }
+//         user.balance = parseFloat(user.balance) - amount;
+//         await user.save();
+//       }
+
+  
+//       return res.status(200).json({
+//         success: true,
+//         message: "Status updated successfully",
+//         data: updatedTransaction
+//       });
 //     } catch (error) {
-//         res.status(500).json({
-//             success: false,
-//             message: 'Internal server error',
-//             error: error.message || error,
-//         });
+//       console.error("Error updating transaction:", error);
+//       return res.status(500).json({
+//         success: false,
+//         message: "Internal Server Error: " + error.message
+//       });
 //     }
-// };
+//   };
 
 
 
 
 
-export {updateProfit, getTransactions,  getTransactionsAdmin}
+
+export {updateProfit, getTransactions,  getTransactionsAdmin, Deposit}

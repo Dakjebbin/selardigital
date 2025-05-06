@@ -7,29 +7,30 @@ const transactionSchema = mongoose.Schema({
      },
   amount: { 
     type: Number, 
-    required: true 
+    required: true,
+    min: [0, 'Amount must be positive'] 
 },
   type: { 
     type: String, 
-    enum: ['Course', 'Withdrawal', "New Sales", "Course Purchase"], 
+    enum: ['Course', 'Withdrawal', "New Sales", "Course Purchase", "Deposit"], 
      required: true 
 },
-//   transactionHash: { 
-//     type: String, 
-//     required: true
-//  },  // Bitcoin transaction hash
+  paymentMethod: { 
+     type: String, 
+     required: true
+  },  
   status: { type: String, 
     enum: ['Pending', 'Completed', 'Failed'], 
     default: 'Pending' },
     
-    imageUrl: { // Store the Cloudinary URL
+    imageUrl: { 
       type: String,
-     // required: true
+      required: true
     },
     courseType: {
       type: String,
       enum: ['UBB', 'AffiliateLab', "HubSpotAcademy", "SavageAffiliates"],
-      required: true
+    
     }
 }, {
   timestamps: true

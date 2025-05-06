@@ -96,11 +96,11 @@ const Kyc = () => {
       url: "/products",
     },
 
-    {
-      icons: <IoSettings  size={30} />,
-      label: "Settings",
-      url: "/settings",
-    },
+    // {
+    //   icons: <IoSettings  size={30} />,
+    //   label: "Settings",
+    //   url: "/settings",
+    // },
     {
       icons: <IoIosContact size={30} />,
       label: "KYC",

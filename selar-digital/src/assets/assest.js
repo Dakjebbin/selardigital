@@ -21,7 +21,10 @@ import trip from "./Trip-com-Logo-200X100.png";
 import agoda from "./Agoda_logo_160x90.png"
 import shopify from "./shopify logo.png";
 import ai_bot from "./ai_bot-removebg-preview (1).png"
-
+import grok from "./grok-removebg-preview.png"
+import convo from "./convogpt.jpeg"
+import socialflow from "./socialflow.png"
+import icp from "./icp.png"    
 
 
 
@@ -30,10 +33,14 @@ export const assets = {
     shopee,
     ai_bot,
     shopify,
+    socialflow,
+    convo,
+    grok,
     aliexpress,
     trip,
     agoda,
     books,
+    icp,
     earn,
     menu_button,
     close_btn,
