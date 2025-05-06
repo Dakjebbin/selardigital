@@ -111,9 +111,9 @@ const DepositComponent = () => {
     } catch (error) {
       if (axios.isAxiosError(error)) {
         const errorMsg = error?.response?.data?.message || "An error occurred";
-        (errorMsg);
+       toast.error(errorMsg);
       } else {
-        ("An unexpected error occurred");
+       toast.error ("An unexpected error occurred");
       }
     } finally{
       setLoading(false);
