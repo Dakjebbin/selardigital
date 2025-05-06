@@ -5,6 +5,7 @@ import { BsFillLightningChargeFill } from "react-icons/bs";
 import { FaStar } from "react-icons/fa";
 import { motion } from "motion/react"; //eslint-disable-line
 
+
 const ContactHero = () => {
   return (
     <section className='bg-white rounded-2xl m-auto w-[95%]  pb-10 mt-10 mb-10 '>
@@ -42,6 +43,7 @@ const ContactHero = () => {
             </div>
         </div>
         </motion.div>
+      
     </section>
   )
 }

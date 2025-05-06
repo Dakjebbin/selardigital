@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Charts from '../components/Charts';
 import { assets } from "../assets/assest";
 import { MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
-import { motion } from "motion/react";
+import { motion } from "motion/react"; //eslint-disable-line
 import { useAuthContext } from '../context/auth-context';
 import toast from 'react-hot-toast';
 import axios from 'axios';
@@ -62,7 +62,8 @@ const Courses = () => {
     }
   ];
   
-  const baseUrl = "/api";
+   const baseUrl = "/api";
+  //const baseUrl = "http://localhost:8527";
   axios.defaults.withCredentials = true;
 
   const handleBuyNow = (course) => {
@@ -103,18 +104,18 @@ const Courses = () => {
 
       if (response.status === 200) {
         toast.success("Purchase successful");
-        // setInputAmount('');
+       setInputAmount('');
       } else {
         toast.error("An error Occured"); 
       }
     } catch (error) {
       if (error.response) {
         if (error.response.status === 404) {
-            toast.error(error.response); 
+            toast.error(error.response.data?.message || "An error occurred"); 
           } else if (error.response.status === 401) {
-            toast.error(error.response); 
+            toast.error(error.response.data?.message || "An error occurred"); 
           } else if (error.response.status === 400) { 
-             toast.error(error.response);
+             toast.error(error.response.data?.message || "An error occurred");
           }else {
             toast.error('An error occurred. Please try again later.'); 
           }
@@ -239,6 +240,18 @@ const Courses = () => {
                 </div>
               </div>
             )}
+
+            <section>
+            <div className="our-courses ml-18 mb-8">
+              <MdOutlineKeyboardDoubleArrowRight
+                className="text-[#59486e] font-bold"
+                size={30}
+              />
+              <span> Sales Optimizer</span>
+            </div>
+
+            {/* <img src="" alt="" /> */}
+            </section>
           </main>
         </>
       )}

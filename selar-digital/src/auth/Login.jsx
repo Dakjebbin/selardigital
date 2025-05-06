@@ -15,6 +15,7 @@ const Login = () => {
     // const [permissionError, setPermissionError] = useState(false);
 
     const baseUrl = "/api";
+    //const baseUrl = "http://localhost:8527"
     axios.defaults.withCredentials = true;
 
     const handleSubmit = async (e) => {
