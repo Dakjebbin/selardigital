@@ -16,6 +16,10 @@ import SidebarWithdraw from './pages/SidebarWithdraw.jsx'
 import ForgotPassword from './pages/ForgotPassword.jsx'
 import Kyc from './pages/Kyc.jsx'
 import TermsConditions from './components/Terms.jsx'
+import Marketplace from './pages/MarketPlaceDash.jsx'
+import DepositDash from './pages/DepositDash.jsx'
+import TransactionDash from './pages/TransactionDash.jsx'
+import ProductsDash from './pages/ProductsDash.jsx'
 
 const router = createBrowserRouter([
   {
@@ -54,6 +58,18 @@ const router = createBrowserRouter([
   },{
     path: "/kyc",
     element: <Kyc/>
+  },{
+    path: "/marketplace",
+    element: <Marketplace/>
+  },{
+    path: "/deposits",
+    element: <DepositDash/>
+  },{
+    path: "/transaction",
+    element: <TransactionDash/>
+  },{
+    path: "/products",
+    element: <ProductsDash/>
   }
 
 

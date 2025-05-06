@@ -1,8 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap');
+import 'simple-datatables/dist/style.css';
 @tailwind utilities;
 @import "tailwindcss";
 @import "tw-animate-css";
+
 
 @custom-variant dark (&:is(.dark *));
 
@@ -40,6 +42,10 @@ body{
   width: 20px; /* Adjust size as needed */
   height: auto;
   fill: black;
+}
+
+.scrollbar-none::-webkit-scrollbar{
+  display: none;
 }
 
 section{

@@ -19,7 +19,8 @@ import shopee from "./Shopee-Logo-200X100.png";
 import aliexpress from "./AliExpress_160X90.png"
 import trip from "./Trip-com-Logo-200X100.png";
 import agoda from "./Agoda_logo_160x90.png"
-import shopify from "./shopify logo.png"
+import shopify from "./shopify logo.png";
+import ai_bot from "./ai_bot-removebg-preview (1).png"
 
 
 
@@ -27,6 +28,7 @@ import shopify from "./shopify logo.png"
 export const assets = {
     background,
     shopee,
+    ai_bot,
     shopify,
     aliexpress,
     trip,

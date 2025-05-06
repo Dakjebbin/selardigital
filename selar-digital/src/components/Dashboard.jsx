@@ -5,10 +5,14 @@ import { FaWindowClose } from "react-icons/fa";
 import { BsFillBarChartFill } from "react-icons/bs";
 import { HiCursorClick } from "react-icons/hi";
 import { AiTwotoneDollarCircle } from "react-icons/ai";
+import { VscReferences } from "react-icons/vsc";
+import { PiHandWithdrawFill } from "react-icons/pi";
 import "../styles/dash.css";
 import { FaUsb } from "react-icons/fa";
 import { CiCirclePlus } from "react-icons/ci";
 import axios from "axios"
+import { FaMoneyBillTrendUp } from "react-icons/fa6";
+import { MdAccountBalanceWallet } from "react-icons/md";
 import { FaArrowRightArrowLeft } from "react-icons/fa6";
 import { Line } from "react-chartjs-2";
 import {
@@ -21,7 +25,9 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-import toast from "react-hot-toast";
+// import toast from "react-hot-toast";
+import DonutChartCard from "./RadioChart";
+import TeamProgressCard from "./TeamCharts";
 
 ChartJS.register(
   CategoryScale,
@@ -143,123 +149,59 @@ const Dashboard = () => {
         <div className="text-right text-xl my-3 font-semibold">
           <p>Welcome <span className="text-[#8b7a1a]">Back</span> {userData.username}</p>
         </div>
-      <div className="trading-view-widget mb-6 px-4 py-2 bg-[#1f1f1f] shadow-md rounded-lg flex items-center justify-between">
-        <iframe
-          src="https://www.tradingview.com/widgetembed/?frameElementId=tradingview_e15f9&symbol=NASDAQ%3AAAPL&interval=60&hidesidetoolbar=1&symboledit=1&saveimage=1&theme=dark"
-          width="100%"
-          height="100"
-          allowFullScreen={true}
-          title="TradingView Price Ticker"
-        ></iframe>
-      </div>
+     
 
-      <div className="flex flex-wrap gap-3">
-        <div className="bg-gradient-to-tr grow basis-[200px] from-[#bebebe] rounded-2xl to-[#ceb318] ">
-          <div>
-
-            <div className="flex items-center px-5 py-4">
-            <div className="w-8 h-8 mr-3 rounded-full border flex items-center justify-center bg-white">
-            <BsFillBarChartFill />
-            </div>
-            <p className="text-[#202020] text-[18px]">Revenue</p>
-            </div>
-
-            <hr />
-            <div className="flex justify-between items-center px-5 py-4">
-              <p className="text-2xl font-semibold">$24.84K</p>
-              <div>
-                <p className="text-green-800">+87.3%</p>
-                <p>last period</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-        <div className="bg-gradient-to-tr grow basis-[200px] from-[#bebebe] rounded-2xl to-[#ceb318] ">
-          <div>
-
-            <div className="flex items-center px-5 py-4">
-            <div className="w-8 h-8 mr-3 rounded-full border flex items-center justify-center bg-white">
-            <HiCursorClick  />
-            </div>
-            <p className="text-[#202020] text-[18px]">Clicks</p>
-            </div>
-
-            <hr />
-            <div className="flex justify-between items-center px-5 py-4">
-              <p className="text-2xl font-semibold">7.853</p>
-              <div>
-                <p className="text-red-600">+44.2%</p>
-                <p>last period</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="bg-gradient-to-tr grow basis-[200px] from-[#bebebe] rounded-2xl to-[#ceb318] ">
-          <div>
-
-            <div className="flex items-center px-5 py-4">
-            <div className="w-8 h-8 mr-3 rounded-full border flex items-center justify-center bg-white">
-            <FaUsb />
-            </div>
-            <p className="text-[#202020] text-[18px]">Referrals</p>
-            </div>
-
-            <hr />
-            <div className="flex justify-between items-center px-5 py-4">
-              <p className="text-2xl font-semibold">54</p>
-              <div>
-                <p className="text-green-800">+78.9%</p>
-                <p>last period</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="bg-gradient-to-tr grow basis-[200px] from-[#bebebe] rounded-2xl to-[#ceb318] ">
-          <div>
-
-            <div className="flex items-center px-5 py-4">
-            <div className="w-8 h-8 mr-3 rounded-full border flex items-center justify-center bg-white">
-            <AiTwotoneDollarCircle  />
-            </div>
-            <p className="text-[#202020] text-[18px]">Payments</p>
-            </div>
-
-            <hr />
-            <div className="flex justify-between items-center px-5 py-4">
-              <p className="text-2xl font-semibold">$83.302</p>
-              <div>
-                <p className="text-red-600">+27.5%</p>
-                <p>last period</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        
-      </div>
-
-      <div className="flex justify-between m-auto md:w-[90%] w-full gap-10 items-center mt-10 flex-col lg:flex-row">
-        <div className="shadow-lg shadow-black w-80 h-40 rounded-2xl px-5 py-5">
+      <div className="flex flex-wrap justify-between m-auto md:w-[90%] w-full gap-10  mt-10 ">
+        <div className="shadow-lg grow basis-[200px] shadow-black rounded-2xl px-5 py-5">
           <div className="flex items-center justify-between">
-            <p className="text-3xl font-semibold">Deposits</p>
+            <p className="text-xl font-semibold">Deposits</p>
             <div onClick={() => setDepositModal(true)}>
-            <CiCirclePlus size={30} />
+            <CiCirclePlus size={20} />
              </div>
           </div>
           <p className="mt-6 text-2xl">${userData.balance}.00</p>
         </div>
 
-        <div className="shadow-lg shadow-black w-80 h-40 rounded-2xl px-5 py-5">
+        <div className="shadow-lg grow basis-[200px] shadow-black rounded-2xl px-5 py-5">
           <div className="flex items-center justify-between">
-            <p className="text-3xl font-semibold">Profits</p>
-            <FaArrowRightArrowLeft size={30} />
+            <p className="text-xl font-semibold">Profits</p>
+            <FaArrowRightArrowLeft size={20} />
           </div>
           <p className="mt-6 text-2xl">${userData.profit}.00</p>
         </div>
+
+        <div className="shadow-lg grow basis-[200px] shadow-black rounded-2xl px-5 py-5">
+          <div className="flex items-center justify-between">
+            <p className="text-xl font-semibold">Total Balance</p>
+            <MdAccountBalanceWallet size={20} />
+          </div>
+          <p className="mt-6 text-2xl">${userData.profit}.00</p>
+        </div>
+
+        <div className="shadow-lg grow basis-[200px] shadow-black rounded-2xl px-5 py-5">
+          <div className="flex items-center justify-between">
+            <p className="text-xl font-semibold">Bonus</p>
+            <FaMoneyBillTrendUp size={20} />
+          </div>
+          <p className="mt-6 text-2xl">${userData.profit}.00</p>
+        </div>
+
+        <div className="shadow-lg grow basis-[200px] shadow-black rounded-2xl px-5 py-5">
+          <div className="flex items-center justify-between">
+            <p className="text-xl font-semibold">Total Withdrawals</p>
+            <PiHandWithdrawFill size={20} />
+          </div>
+          <p className="mt-6 text-2xl">${userData.profit}.00</p>
+        </div>
+
+        <div className="shadow-lg grow basis-[200px] shadow-black rounded-2xl px-5 py-5">
+          <div className="flex items-center justify-between">
+            <p className="text-xl font-semibold">Referral Bonus</p>
+            <VscReferences size={20} />
+          </div>
+          <p className="mt-6 text-2xl">${userData.profit}.00</p>
+        </div>
+
       </div>
 
       <div>
@@ -319,6 +261,11 @@ const Dashboard = () => {
       </>
 )}
 
+<div className="flex justify-between">
+<DonutChartCard/>
+<TeamProgressCard/>
+</div>
+
      { depositModal && (
        <div className="fixed inset-0 flex items-center justify-center bg-[#00000060] z-50">
                 <div className="bg-white rounded-xl shadow-lg">
@@ -332,7 +279,7 @@ const Dashboard = () => {
                    <form>
                     <div className="flex flex-col mb-3">
                       <label>Enter Amount ($)</label>
-                      <input placeholder="$" className="border-2 px-2 w-96 py-1 rounded-md mt-2 border-gray-400" type="number" />
+                      <input placeholder="$" className="border-2 px-2 w-96  py-1 rounded-md mt-2 border-gray-400" type="number" />
                     </div>
 
                     <div className="flex flex-col">

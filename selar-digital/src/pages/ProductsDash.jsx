@@ -12,16 +12,15 @@ import { IoIosLogOut } from "react-icons/io";
 import { IoMdWallet } from "react-icons/io";
 import { FaSignal } from "react-icons/fa";
 import toast from "react-hot-toast";
-
-import Dashboard from "./Dashboard";
-import Courses from "./Courses"
-import KycDash from "../components/KycDash";
+import Withdraw from "../components/Withdraw";
 import { IoSettings } from "react-icons/io5";
 import { GrTransaction } from "react-icons/gr";
 import { SiMarketo } from "react-icons/si";
 import { PiHandDepositBold } from "react-icons/pi";
+import ProductsClientPage from "../components/ProductsClientPage";
 
-const Kyc = () => {
+
+const ProductsDash = () => {
   axios.defaults.withCredentials = true;
     const { userData } = useAuthContext();
   const [open, setOpen] = useState(true);
@@ -57,7 +56,6 @@ const Kyc = () => {
       setLoggingOut(false);
     }
   };
-
   const menuitems = [
     {
       icons: <MdDashboard size={30} />,
@@ -81,12 +79,12 @@ const Kyc = () => {
       url: "/deposits",
     },
     {
-      icons: <SiMarketo size={30} />,
+      icons: <SiMarketo  size={30} />,
       label: "Marketplace",
       url: "/marketplace",
     },
     {
-      icons: <GrTransaction size={30} />,
+      icons: <GrTransaction  size={30} />,
       label: "Transactions",
       url: "/transaction",
     },
@@ -273,7 +271,7 @@ const Kyc = () => {
           <div
             className={`flex-1 p-5 overflow-auto  md:max-h-screen transition-all duration-500 ${open ? "ml-4" : "ml-5"}`}
           >
-             <KycDash />
+             <ProductsClientPage />
           </div>
         </>
     )}
@@ -282,4 +280,4 @@ const Kyc = () => {
   );
 };
 
-export default Kyc;
+export default ProductsDash;

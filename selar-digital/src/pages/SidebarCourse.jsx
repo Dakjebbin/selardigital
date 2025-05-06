@@ -5,6 +5,8 @@ import { MdDashboard } from "react-icons/md";
 import { Avatar, AvatarFallback, AvatarImage } from "../components/ui/avatar";
 import { FaBook, FaSpinner } from "react-icons/fa";
 import axios from "axios";
+import { IoSettings } from "react-icons/io5";
+import { MdProductionQuantityLimits } from "react-icons/md";
 import { MdOutlineMenuOpen } from "react-icons/md";
 // import { PiHandWithdrawBold } from "react-icons/pi";
 import { IoIosContact } from "react-icons/io";
@@ -15,6 +17,9 @@ import toast from "react-hot-toast";
 
 import Dashboard from "./Dashboard";
 import Courses from "./Courses"
+import { PiHandDepositBold } from "react-icons/pi";
+import { SiMarketo } from "react-icons/si";
+import { GrTransaction } from "react-icons/gr";
 
 const SidebarCourses = () => {
   axios.defaults.withCredentials = true;
@@ -52,7 +57,6 @@ const SidebarCourses = () => {
       setLoggingOut(false);
     }
   };
-
   const menuitems = [
     {
       icons: <MdDashboard size={30} />,
@@ -70,11 +74,32 @@ const SidebarCourses = () => {
       url: "/Withdraw"
     },
   
-    // {
-    //   icons: <FaSignal size={30}/>,
-    //   label: "Signal",
-    //   url: "/signal",
-    // },
+    {
+      icons: <PiHandDepositBold size={30}/>,
+      label: "Deposits",
+      url: "/deposits",
+    },
+    {
+      icons: <SiMarketo  size={30} />,
+      label: "Marketplace",
+      url: "/marketplace",
+    },
+    {
+      icons: <GrTransaction  size={30} />,
+      label: "Transactions",
+      url: "/transaction",
+    },
+    {
+      icons: <MdProductionQuantityLimits  size={30} />,
+      label: "Products",
+      url: "/products",
+    },
+
+    {
+      icons: <IoSettings  size={30} />,
+      label: "Settings",
+      url: "/settings",
+    },
     {
       icons: <IoIosContact size={30} />,
       label: "KYC",
@@ -127,7 +152,7 @@ const SidebarCourses = () => {
             </div>
 
             {/* Body */}
-            <ul className="flex-1">
+            <ul className="flex-1 h-[80%] overflow-y-scroll scrollbar-none">
               {menuitems.map((item, index) => (
                 <li key={index} className="px-1 py-2 my-2 relative duration-300 flex gap-2 items-center group">
                   <a className=" hover:bg-white rounded-md cursor-pointer pt-1 pl-2 pr-32" href={item.url}>

@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import { assets } from "../assets/assest";
 import { useAuthContext } from "../context/auth-context";
-import { MdDashboard, MdProductionQuantityLimits } from "react-icons/md";
+import { MdDashboard } from "react-icons/md";
 import { Avatar, AvatarFallback, AvatarImage } from "../components/ui/avatar";
 import { FaBook, FaSpinner } from "react-icons/fa";
 import axios from "axios";
+import { IoSettings } from "react-icons/io5";
+import { MdProductionQuantityLimits } from "react-icons/md";
 import { MdOutlineMenuOpen } from "react-icons/md";
 // import { PiHandWithdrawBold } from "react-icons/pi";
 import { IoIosContact } from "react-icons/io";
@@ -15,13 +17,12 @@ import toast from "react-hot-toast";
 
 import Dashboard from "./Dashboard";
 import Courses from "./Courses"
-import KycDash from "../components/KycDash";
-import { IoSettings } from "react-icons/io5";
-import { GrTransaction } from "react-icons/gr";
-import { SiMarketo } from "react-icons/si";
 import { PiHandDepositBold } from "react-icons/pi";
+import { SiMarketo } from "react-icons/si";
+import { GrTransaction } from "react-icons/gr";
+import MainMarketplace from "../components/Marketplace";
 
-const Kyc = () => {
+const Marketplace = () => {
   axios.defaults.withCredentials = true;
     const { userData } = useAuthContext();
   const [open, setOpen] = useState(true);
@@ -57,7 +58,6 @@ const Kyc = () => {
       setLoggingOut(false);
     }
   };
-
   const menuitems = [
     {
       icons: <MdDashboard size={30} />,
@@ -81,12 +81,12 @@ const Kyc = () => {
       url: "/deposits",
     },
     {
-      icons: <SiMarketo size={30} />,
+      icons: <SiMarketo  size={30} />,
       label: "Marketplace",
       url: "/marketplace",
     },
     {
-      icons: <GrTransaction size={30} />,
+      icons: <GrTransaction  size={30} />,
       label: "Transactions",
       url: "/transaction",
     },
@@ -273,7 +273,7 @@ const Kyc = () => {
           <div
             className={`flex-1 p-5 overflow-auto  md:max-h-screen transition-all duration-500 ${open ? "ml-4" : "ml-5"}`}
           >
-             <KycDash />
+             <MainMarketplace />
           </div>
         </>
     )}
@@ -282,4 +282,4 @@ const Kyc = () => {
   );
 };
 
-export default Kyc;
+export default Marketplace;
