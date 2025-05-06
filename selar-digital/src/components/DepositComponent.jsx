@@ -109,7 +109,12 @@ const DepositComponent = () => {
         setAmount('')
       }
     } catch (error) {
-      console.log(error);
+      if (axios.isAxiosError(error)) {
+        const errorMsg = error?.response?.data?.message || "An error occurred";
+        (errorMsg);
+      } else {
+        ("An unexpected error occurred");
+      }
     } finally{
       setLoading(false);
     }
