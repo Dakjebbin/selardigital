@@ -1,5 +1,6 @@
 import axios from "axios";
 import { createContext, useContext, useEffect, useState } from "react";
+import Loader from "../components/Loader";
 
 //  import Loader from "../components/Loader"; 
 
@@ -54,11 +55,17 @@ const AuthContextProvider = ({ children }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ userData,  }}>
+    <AuthContext.Provider value={{ userData }}>
     <>
-              {children}
-              </>
-    </AuthContext.Provider>
+      {loading ? (
+         <div className="flex items-center justify-center min-h-screen">
+        <Loader/>
+        </div>
+      ) : (
+        children
+      )}
+    </>
+  </AuthContext.Provider>
   );
 };
 
