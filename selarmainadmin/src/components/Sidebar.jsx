@@ -6,8 +6,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { FaBook, FaSpinner } from "react-icons/fa";
 import axios from "axios";
 import { MdOutlineMenuOpen } from "react-icons/md";
-// import { PiHandWithdrawBold } from "react-icons/pi";
-// import { IoIosContact } from "react-icons/io";
+import { FaAddressBook } from "react-icons/fa";
 import { IoIosLogOut } from "react-icons/io";
 // import { IoMdWallet } from "react-icons/io";
 import { FaUsers } from "react-icons/fa6";
@@ -16,6 +15,7 @@ import toast from "react-hot-toast";
 // import Dashboard from "./Dashboard";
 // import Courses from "./Courses"
 import AdminDash from "./AdminDash";
+import { TbWorldWww } from "react-icons/tb";
 
 const SidebarCourses = () => {
   axios.defaults.withCredentials = true;
@@ -58,7 +58,7 @@ const SidebarCourses = () => {
     {
       icons: <MdDashboard size={30} />,
       label: "Dashboard",
-      url: "/admin-dashboard",
+      url: "/dashboard",
     }
   ,
     {
@@ -66,6 +66,17 @@ const SidebarCourses = () => {
       label: "Manage Users",
       url: "/admin-dashboard",
     },
+    {
+      icons: <TbWorldWww size={30} />,
+      label: "Manage Website",
+      url: "/manage-website",
+    },
+    {
+      icons: <FaAddressBook size={30} />,
+      label: "KYC",
+      url: "/kyc",
+    },
+    
    
   ];
 

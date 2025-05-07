@@ -4,13 +4,14 @@ import { useAuthContext } from "../context/auth-context";
 import { MdDashboard } from "react-icons/md";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import toast from "react-hot-toast";
-import { FaSpinner } from "react-icons/fa";
+import { FaAddressBook, FaSpinner } from "react-icons/fa";
 import axios from "axios";
 import { MdOutlineMenuOpen } from "react-icons/md";
 import { IoIosLogOut } from "react-icons/io";
 import { RxAvatar } from "react-icons/rx";
 import { useParams } from "react-router-dom";
 import { FaUsers } from "react-icons/fa6";
+import { TbWorldWww } from "react-icons/tb";
 
 const UserDetails = () => {
  
@@ -209,13 +210,23 @@ const UserDetails = () => {
     {
       icons: <MdDashboard size={30} />,
       label: "Dashboard",
-      url: "/admin-dashboard",
+      url: "/dashboard",
     },
 
     {
       icons: <FaUsers size={30}/>,
       label: "Manage Users",
       url: "/admin-dashboard",
+    },
+    {
+      icons: <TbWorldWww size={30} />,
+      label: "Manage Website",
+      url: "/manage-website",
+    },
+    {
+      icons: <FaAddressBook size={30} />,
+      label: "KYC",
+      url: "/kyc",
     },
     
     

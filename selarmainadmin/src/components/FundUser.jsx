@@ -2,13 +2,14 @@ import { useEffect, useRef, useState } from "react";
 import { assets } from "../assets/assest";
 import { useAuthContext } from "../context/auth-context";
 import { MdDashboard } from "react-icons/md";
-import { FaSpinner } from "react-icons/fa";
+import { FaAddressBook, FaSpinner, FaUsers } from "react-icons/fa";
 import axios from "axios";
 import { MdOutlineMenuOpen } from "react-icons/md";
 import { IoIosLogOut } from "react-icons/io";
 import { useParams } from "react-router-dom";
 import { RxAvatar } from "react-icons/rx";
 import toast from "react-hot-toast";
+import { TbWorldWww } from "react-icons/tb";
 
 
 const FundUser = () => {
@@ -145,7 +146,22 @@ const FundUser = () => {
     {
       icons: <MdDashboard size={30} />,
       label: "Dashboard",
+      url: "/dashboard",
+    },
+    {
+      icons: <FaUsers size={30}/>,
+      label: "Manage Users",
       url: "/admin-dashboard",
+    },
+    {
+      icons: <TbWorldWww size={30} />,
+      label: "Manage Website",
+      url: "/manage-website",
+    },
+    {
+      icons: <FaAddressBook size={30} />,
+      label: "KYC",
+      url: "/kyc",
     },
   ];
 

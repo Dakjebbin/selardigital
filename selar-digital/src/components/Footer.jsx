@@ -51,14 +51,16 @@ const Footer = () => {
         <h2 className='text-2xl text-black mb-2 font-bold'>Contact Us</h2>
 
             <p className='text-yellow-500 font-semibold text-lg'>Address:</p>
-            <p>#1446, Green Valley
-            Sector 127, Mohali, Punjab, India</p>
+            <p>United states</p>
 
             <hr className='mb-2' />
 
             <p className='text-yellow-500 font-semibold text-lg'>Contact:</p>
             <hr className='mb-2'/>
-            <p className='text-yellow-500 font-semibold text-lg'>Email</p>
+           
+            <div className='text-yellow-500 font-semibold text-lg'>Email:
+            <a href="mailto:contact@selardigitalmarketplace.com">contact@selardigitalmarketplace.com</a>
+            </div>
             <hr className='mb-2'/>
             <div className='mt-5 flex'>
             <FaFacebook size={22} className='mr-4'/>

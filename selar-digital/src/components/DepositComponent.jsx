@@ -14,17 +14,39 @@ const DepositComponent = () => {
   const [image, setImage] = useState(null);
   const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [walletAddress, setWalletAddress] = useState({});
 
   //const baseUrl = "http://localhost:8527";
   const baseUrl = "/api";
   axios.defaults.withCredentials = true;
 
-  const walletAddresses = 
-    {
-    Bitcoin : "bc1q3v5w4x5g6h7j8k9l0m1n2o3p4q5r6s7t8u9v0",
-    Eth : "0x1234567890abcdef1234567890abcdef12345678",
-    USDT : "0xabcdef1234567890abcdef1234567890abcdef12"
-    };
+
+    const fetchWalletAddress = async () => {
+      try {
+          const response = await axios.get(`${baseUrl}/webUpdate/fetchAddress`,{
+            withCredentials: true,
+          })
+
+          if (response?.data.success) {
+            const data = Array.isArray(response.data.data)
+              ? response.data.data[0] 
+              : response.data.data;             
+            setWalletAddress(data);
+          }
+          
+      } catch (error) {
+        if (axios.isAxiosError(error)) {
+          const errorMsg = error?.response?.data?.message || "An error occurred";
+          toast.error(errorMsg);
+        } else {
+          toast.error("An unexpected error occurred");
+        }
+      }
+    }
+
+    useEffect(() => {
+      fetchWalletAddress();
+},[])
 
     const handleImageChange = (e) => {
       const file = e.target.files[0];
@@ -107,6 +129,9 @@ const DepositComponent = () => {
         toast.success(response?.data?.message);
         setShowModal(false)
         setAmount('')
+        setPaymentMethod('');
+        setImage(null);
+
       }
     } catch (error) {
       if (axios.isAxiosError(error)) {
@@ -213,12 +238,24 @@ const DepositComponent = () => {
                   <input
                    readOnly
                     className="border-2 px-2 w-96  py-1 rounded-md mt-2 border-gray-400"
-                    value={walletAddresses[paymentMethod] || "Select a payment method"}
+                    value={
+                      paymentMethod === "Bitcoin"
+                 ? walletAddress?.btcAddress
+    : paymentMethod === "Eth"
+    ? walletAddress?.ethAddress
+    : paymentMethod === "USDT"
+    ? walletAddress?.usdtAddress
+    : "Select a payment method"
+                    }
                   />
 
 <button
       type="button"
-      onClick={() => copyToClipboard(walletAddresses[paymentMethod])}
+      onClick={() => copyToClipboard( paymentMethod === "Bitcoin"
+        ? walletAddress?.btcAddress
+        : paymentMethod === "Eth"
+        ? walletAddress?.ethAddress
+        : walletAddress?.usdtAddress)}
       className="ml-2 bg-[#998516] text-white px-3 py-1 rounded-md"
     >
       Copy
@@ -233,6 +270,8 @@ const DepositComponent = () => {
                     onChange={handleImageChange}
                    
                   />
+                  {!walletAddress?.btcAddress && <p>Loading wallet addresses...</p>}
+
                 </div>
                 <button
                   className="bg-[#998516] my-3 p-2 font-semibold rounded-2xl"
