@@ -11,6 +11,7 @@ const useAuthContext = () => {
 
 const AuthContextProvider = ({ children }) => {
   const baseUrl = "/api";
+  //const baseUrl = "http://localhost:8527"
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(true);
 //   const [sessionExpired, setSessionExpired] = useState(false);
