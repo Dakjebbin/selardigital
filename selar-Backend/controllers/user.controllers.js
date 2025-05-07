@@ -520,6 +520,32 @@ const resetPassword = async (req, res) => {
   }
 };
 
+const deleteUser = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const user = await User.findByIdAndDelete(id).exec();
+
+    if (!user) {
+      res.status(404).json({
+        success: false,
+        message: "User not found",
+      });
+      return;
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "User deleted successfully",
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Internal server error",
+    });
+  }
+}
+
 
 
 
@@ -533,5 +559,6 @@ export {
   validateOtp,
   forgotPassword,
   updateApprovedStatus,
-  logout
+  logout,
+  deleteUser
 };

@@ -5,7 +5,7 @@ import { fetchAddress, updateWalletAddress } from '../controllers/update.control
 
 const router = express.Router();
 
-router.put("/updateAddress", validateUsers, rolevalidation, updateWalletAddress)
+router.patch("/updateAddress", validateUsers, rolevalidation, updateWalletAddress)
 router.get("/fetchAddress", validateUsers, fetchAddress)
 
 export default router

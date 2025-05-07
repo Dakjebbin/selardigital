@@ -172,10 +172,10 @@ const Dashboard = () => {
 
         <div className="shadow-lg grow basis-[200px] shadow-black rounded-2xl px-5 py-5">
           <div className="flex items-center justify-between">
-            <p className="text-xl font-semibold">Total Balance</p>
+            <p className="text-xl font-semibold">Account Balance</p>
             <MdAccountBalanceWallet size={20} />
           </div>
-          <p className="mt-6 text-2xl">${userData.profit}.00</p>
+          <p className="mt-6 text-2xl"> ${((userData?.profit || 0) + (userData?.balance || 0)).toFixed(2)}.00</p>
         </div>
 
         <div className="shadow-lg grow basis-[200px] shadow-black rounded-2xl px-5 py-5">

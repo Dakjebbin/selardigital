@@ -10,6 +10,7 @@ import SidebarCourses from "./components/Sidebar.jsx"
 import UserDetails from './components/UserDetails.jsx';
 import FundUser from './components/FundUser.jsx';
 import Dashboard from './components/Dashboard.jsx';
+import ManageWebDash from './components/ManageWebDash.jsx';
 
 
 const router = createBrowserRouter([
@@ -31,6 +32,9 @@ const router = createBrowserRouter([
   },{
     path: "/dashboard",
     element: <Dashboard/>
+  },{
+    path: "/manage-website",
+    element: <ManageWebDash/>
   }
 ])
 

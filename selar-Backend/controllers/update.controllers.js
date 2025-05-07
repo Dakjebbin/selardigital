@@ -3,10 +3,15 @@ import Update from "../models/update.model.js";
 const updateWalletAddress = async (req,res) => {
     const {btcAddress, ethAddress, usdtAddress} = req.body;
 
+    const updateFields = {};
+  if (btcAddress) updateFields.btcAddress = btcAddress;
+  if (ethAddress) updateFields.ethAddress = ethAddress;
+  if (usdtAddress) updateFields.usdtAddress = usdtAddress;
+
     try {
         const update = await Update.findOneAndUpdate(
             {},
-            { btcAddress, ethAddress, usdtAddress },
+            { $set: updateFields },
             { new: true, upsert: true } 
         );
 
@@ -17,12 +22,6 @@ const updateWalletAddress = async (req,res) => {
             });
         }
 
-        // const newAddress = await Update.create({
-        //     btcAddress,
-        //     ethAddress,
-        //     usdtAddress,
-        //   });
-
         res.status(200).json({
             success:true,
             message: "Wallet addresses updated successfully",
@@ -31,7 +30,8 @@ const updateWalletAddress = async (req,res) => {
     } catch (error) {
         res.status(500).json({
             success:false,
-            message: "Internal Server Error"});
+            message: "Internal Server Error" + error.message
+        });
     }
 }
 
