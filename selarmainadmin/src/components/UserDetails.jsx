@@ -24,7 +24,9 @@ const UserDetails = () => {
   const { Id } = useParams();
   const [userDetails, setUserDetails] = useState(null);
   const [isApproved, setIsApproved] = useState("Approved")
-  // const [status, setStatus] = useState("active")
+   const [status, setStatus] = useState("")
+   const [statusUpdates, setStatusUpdates] = useState({});
+
   // const [signalAvailable, setSignalAvailable] = useState("Signal")
   const [transaction, setTransaction] = useState([])
 
@@ -90,36 +92,7 @@ const UserDetails = () => {
   //   }
   // }
 
-  // const handleSignalUpdate = async () => {
-   
-    
-  //   try {
-  //     setUpdated(true);
-  //     const response = await axios.patch(`${baseUrl}/auth/signal/${Id}`,{
-  //       signalAvailable
-  //     },{
-  //       withCredentials: true,
-  //     })
-
-  //     if (response.status === 200) {
-  //       toast.success("User's Signal Status has been updated");
-
-  //     }
-      
-  //     setUserDetails((prevStatus) => ({
-  //       ...prevStatus,
-  //       signalAvailable, // Update only the status
-  //     }));
-  //   } catch (error) {
-  //     if (error instanceof axios.AxiosError) {
-  //       toast.error(error?.response?.data);
-  //   } else {
-  //       toast.error("Error fetching users: ", error.message);
-  //   }
-  //   } finally {
-  //     setUpdated(false);
-  //   }
-  // }
+  
 
   useEffect(() => {
   const fetchTransaction = async () => {
@@ -143,6 +116,46 @@ const UserDetails = () => {
   
   },[Id])
 
+  const handleTransactionStatusChange = (transactionId, value) => {
+    setStatusUpdates((prev) => ({
+      ...prev,
+      [transactionId]: value,
+    }));
+  };
+  
+
+  const updateTransactionStatus = async (transactionId) => {
+    const status = statusUpdates[transactionId];
+    if (!status) return toast.error("Please select a status.");
+    try {
+      const response = await axios.patch(`${baseUrl}/transactions/updateTransact/${transactionId}`, {
+        status,
+      }, {
+        withCredentials: true,
+      });
+
+      if (response.status === 200) {
+        toast.success("Transaction status updated successfully");
+        setTransaction((prev) =>
+          prev.map((t) =>
+            t._id === transactionId ? { ...t, status } : t
+          )
+        );
+
+        setStatusUpdates((prev) => {
+          const newUpdates = { ...prev };
+          delete newUpdates[transactionId];
+          return newUpdates;
+        });
+      }
+    } catch (error) {
+      if (error instanceof axios.AxiosError) {
+        toast.error(error?.response?.data?.message || "Something went wrong" );
+    } else {
+        toast.error("Error updating transaction: ", error.message);
+    }
+    }
+  }
 
 
     const fetchUserDetails = async () => {
@@ -454,40 +467,6 @@ const formatDate = (timestamp) => {
                     font-playfair font-semibold rounded-lg">Update</button>
                 </div>
                 </div>
-             
-                {/* <div className="flex flex-col">
-                <label>Update User Status</label>
-                <select value={status}
-                 id=""
-                 onChange={(e) => setStatus(e.target.value)}
-                 className="border px-4 py-2  rounded-md font-semibold text-xl">
-                    <option value="active" className="font-semibold" >Active</option>
-                    <option value="blocked">Blocked</option>
-                </select>
-
-                <div className="mb-4">
-                    <button onClick={handleStatusUpdate} className="bg-[#14AE5C] px-5 py-2 mt-5 font-playfair font-semibold rounded-lg">Update</button>
-                </div>
-                </div> */}
-  
-  {/* Signal Update on the website */}
-                {/* <div className="flex flex-col">
-                <label>Signal Status</label>
-                <select value={signalAvailable}
-                 id=""
-                 onChange={(e) => setSignalAvailable(e.target.value)}
-                 className="border px-4 py-2  rounded-md font-semibold text-xl">
-                    <option value="Signal" className="font-semibold" >Signal</option>
-                    <option value="No Signal">No Signal</option>
-                </select>
-
-                <div className="mb-4">
-                    <button onClick={handleSignalUpdate} className="bg-[#14AE5C] px-5 py-2 mt-5 font-playfair font-semibold rounded-lg">{
-                      updated ? "Updating" : "Update"
-                      }</button>
-                </div>
-                </div> */}
-           
            
             </div>
         </div>
@@ -506,6 +485,7 @@ const formatDate = (timestamp) => {
         <th scope="col" className="px-6 py-3">Amount</th>
         <th scope="col" className="px-6 py-3">Type</th>
         <th scope="col" className="px-6 py-3">POF</th>
+        <th scope="col" className="px-6 py-3">Update Status</th>
       </tr>
     </thead>
     <tbody>
@@ -537,6 +517,19 @@ const formatDate = (timestamp) => {
               <a href={t.imageUrl || "#"} className="font-medium text-blue-600 dark:text-blue-500 hover:underline" target="_blank" rel="noreferrer">
                 {t.type === "Deposit" ? "View" : null}
               </a>
+            </td>
+
+            <td className="px-6 py-4">
+              
+            {t.type === "Deposit" ?  <select value={statusUpdates[t._id] || ""} onChange={(e) => handleTransactionStatusChange(t._id, e.target.value)} name="" id="">
+                <option value="Pending" className="font-semibold">Pending</option>
+                <option value="Completed">Completed</option>
+                <option value="Failed">Failed</option>
+             </select> : null} 
+             
+            {t.type === "Deposit" ? <div>
+              <button  onClick={() => updateTransactionStatus(t._id)} type="submit" className="bg-[#14AE5C] px-5 py-2 mt-5 font-playfair font-semibold rounded-lg">done</button>
+             </div> : null}
             </td>
           </tr>
         ))

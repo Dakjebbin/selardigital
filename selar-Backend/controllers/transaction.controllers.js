@@ -185,74 +185,84 @@ const Deposit = async (req, res) => {
     }
   };
 
-//   const updateTransactionStatus = async (req, res) => {
-//     const { tid } = req.params; // Expecting 'id' in params now
-//     const { status } = req.body;
+  const updateTransactionStatus = async (req, res) => {
+    const { tid } = req.params; // Expecting 'id' in params now
+    const { status } = req.body;
   
-//     // Validate required fields
-//     if (!status) {
-//       return res.status(400).json({ success: false, message: "Status is required" });
-//     }
+    // Validate required fields
+    if (!status) {
+      return res.status(400).json({ success: false, message: "Status is required" });
+    }
   
-//     const validStatuses = ["Pending", "Success", "Failed"];
-//     if (!validStatuses.includes(status)) {
-//       return res.status(400).json({ success: false, message: `Invalid status. Allowed values: ${validStatuses.join(", ")}` });
-//     }
+    const validStatuses = ['Pending', 'Completed', 'Failed'];
+    if (!validStatuses.includes(status)) {
+      return res.status(400).json({ success: false, message: `Invalid status. Allowed values: ${validStatuses.join(", ")}` });
+    }
   
-//     try {
-//       // Find transaction by the custom `id` field
-//       const updatedTransaction = await transactionModel.findOneAndUpdate(
-//         { tid }, // Find by custom 'id' field
-//         { status },
-//         { new: true } // Return the updated transaction
-//       );
+    try {
+      // Find transaction by the custom `id` field
+      // const updatedTransaction = await Transaction.findOneAndUpdate(
+      //   { tid }, // Find by custom 'id' field
+      //   { status },
+      //   { new: true } // Return the updated transaction
+      // ).exec();
 
-//       if (!updatedTransaction) {
-//         return res.status(404).json({ success: false, message: "Transaction not found" });
-//       }
 
-//       const user = await userModel.findOne({ username: updatedTransaction.username }).exec()
+      const updatedTransaction = await Transaction.findByIdAndUpdate(tid, {
+        status,
+        $set: { updatedAt: new Date() } // Update the timestamp
+      }, {
+        new: true, // Return the updated document
+     
+      }).exec();
+      
 
-//       if (!user) {
-//         return res.status(404).json({ success: false, message: "User not found" });
-//       }
+      if (!updatedTransaction) {
+        return res.status(404).json({ success: false, message: "Transaction not found" });
+      }
 
-//       if(updatedTransaction.type === 'Deposit' && updatedTransaction.status === 'Success') {
-//         const amount = parseFloat(updatedTransaction.amount);
-//         if (isNaN(amount)) {
-//           return res.status(400).json({ success: false, message: "Invalid transaction amount" });
-//         }
-//         user.balance = parseFloat(user.balance) + amount;
-//         await user.save(); 
-//       }
+      const user = await User.findOne({ _id: updatedTransaction.user }).exec()
 
-//       if (updatedTransaction.type === 'Withdrawal' && updatedTransaction.status === 'Success') {
-//         const amount = parseFloat(updatedTransaction.amount);
-//         if (isNaN(amount)) {
-//           return res.status(400).json({ success: false, message: "Invalid transaction amount" });
-//         }
-//         user.balance = parseFloat(user.balance) - amount;
-//         await user.save();
-//       }
+      if (!user) {
+        return res.status(404).json({ success: false, message: "User not found" });
+      }
+
+      if(updatedTransaction.type === 'Deposit' && updatedTransaction.status === 'Completed') {
+        const amount = parseFloat(updatedTransaction.amount);
+        if (isNaN(amount)) {
+          return res.status(400).json({ success: false, message: "Invalid transaction amount" });
+        }
+        user.balance = parseFloat(user.balance) + amount;
+        await user.save(); 
+      }
+
+      if (updatedTransaction.type === 'Withdrawal' && updatedTransaction.status === 'Completed') {
+        const amount = parseFloat(updatedTransaction.amount);
+        if (isNaN(amount)) {
+          return res.status(400).json({ success: false, message: "Invalid transaction amount" });
+        }
+        user.balance = parseFloat(user.balance) - amount;
+        await user.save();
+      }
 
   
-//       return res.status(200).json({
-//         success: true,
-//         message: "Status updated successfully",
-//         data: updatedTransaction
-//       });
-//     } catch (error) {
-//       console.error("Error updating transaction:", error);
-//       return res.status(500).json({
-//         success: false,
-//         message: "Internal Server Error: " + error.message
-//       });
-//     }
-//   };
+      return res.status(200).json({
+        success: true,
+        message: "Status updated successfully",
+        data: updatedTransaction
+      });
+    } catch (error) {
+      console.error("Error updating transaction:", error);
+      return res.status(500).json({
+        success: false,
+        message: "Internal Server Error: " + error.message
+      });
+    }
+   };
 
 
 
 
 
 
-export {updateProfit, getTransactions,  getTransactionsAdmin, Deposit}
+export {updateProfit, getTransactions, getTransactionsAdmin, Deposit, updateTransactionStatus}

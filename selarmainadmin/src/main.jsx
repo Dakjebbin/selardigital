@@ -12,6 +12,7 @@ import FundUser from './components/FundUser.jsx';
 import Dashboard from './components/Dashboard.jsx';
 import ManageWebDash from './components/ManageWebDash.jsx';
 import ManageProductDash from './components/ManageProductDash.jsx';
+import Kyc from './components/Kyc.jsx';
 
 
 const router = createBrowserRouter([
@@ -39,6 +40,9 @@ const router = createBrowserRouter([
   },{
     path: "/manage-products",
     element: <ManageProductDash/>
+  },{
+    path: "/kyc",
+    element: <Kyc/>
   }
 ])
 

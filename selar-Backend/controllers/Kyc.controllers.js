@@ -7,10 +7,10 @@ const KycSubmit = async (req, res) => {
         const validUser = req.user
 
     try {
-        const {fullname, email, Dateofbirth, Address, phoneNumber} = req.body;
+        const {fullname, email, Dateofbirth, Address, PhoneNumber} = req.body;
 
-        if (!fullname || !email || !Dateofbirth || !Address || !phoneNumber) {
-            res.status(404).json({
+        if (!fullname || !email || !Dateofbirth || !Address || !PhoneNumber) {
+           return res.status(404).json({
                 success: false,
                 message: "All fields are required",
             })
@@ -24,7 +24,7 @@ const KycSubmit = async (req, res) => {
             email,
             Dateofbirth,
             Address,
-            phoneNumber
+            PhoneNumber
            
         })
 
@@ -45,11 +45,44 @@ const KycSubmit = async (req, res) => {
     } catch (error) {
         res.status(500).json({
             success:false,
-            message: "Internal server error"
+            message: "Internal server error" +error.message
         })
     }
    
 }
 
+const getKyc = async (req, res) => {
+    const validUser = req.user
 
-export {KycSubmit}
+    try {
+        const kyc = await Kyc.find({}).exec()
+
+        if (kyc.length === 0) {
+            return res.status(404).json({
+                success: false,
+                message: "No KYC found"
+            });
+        }
+
+        if (kyc) {
+            res.status(200).json({
+                success:true,
+                message: "KYC fetched successfully",
+                kyc
+            })
+        } else {
+            res.status(404).json({
+                success:false,
+                message: "KYC not found"
+            })
+        }
+    } catch (error) {
+        res.status(500).json({
+            success:false,
+            message: "Internal server error"
+        })
+    }
+}
+
+
+export {KycSubmit, getKyc}
