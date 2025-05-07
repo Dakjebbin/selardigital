@@ -14,6 +14,7 @@ import { FaUsers } from "react-icons/fa6";
 import TotalRevenueChart from "./TotalRevenueChart";
 import LeadsCard from "./ChartDash";
 import { TbWorldWww } from "react-icons/tb";
+import { AiFillProduct } from "react-icons/ai";
 
 const Dashboard = () => {
   const { userData } = useAuthContext();
@@ -184,6 +185,11 @@ const Dashboard = () => {
       icons: <TbWorldWww size={30} />,
       label: "Manage Website",
       url: "/manage-website",
+    },
+    {
+      icons: <AiFillProduct size={30} />,
+      label: "Manage Products",
+      url: "/manage-products",
     },
     {
       icons: <FaAddressBook size={30} />,

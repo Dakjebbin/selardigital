@@ -5,7 +5,8 @@ import authRoutes from "./routes/user.routes.js";
 import transactionRoutes from "./routes/transaction.routes.js"
 import fundRoutes from "./routes/fund.routes.js"
 import addressRoutes from "./routes/update.routes.js"
-// import kycRoutes from "./routes/kyc.routes.js"
+import salesRoutes from "./routes/sales.routes.js"
+import kycRoutes from "./routes/kyc.routes.js"
 import cookieParser from 'cookie-parser';
 import cors from "cors"
 
@@ -25,10 +26,11 @@ app.use(cors({
    
 }))
 app.use("/auth", authRoutes)
-// app.use("/authKyc", kycRoutes);
+app.use("/authKyc", kycRoutes);
  app.use("/transactions", transactionRoutes )
 app.use("/userFund", fundRoutes)
 app.use("/webUpdate", addressRoutes)
+app.use("/sales", salesRoutes)
 
 app.use((err,req,res,next)=>{
     console.error(err.message)

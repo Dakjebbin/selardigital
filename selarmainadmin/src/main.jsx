@@ -11,6 +11,7 @@ import UserDetails from './components/UserDetails.jsx';
 import FundUser from './components/FundUser.jsx';
 import Dashboard from './components/Dashboard.jsx';
 import ManageWebDash from './components/ManageWebDash.jsx';
+import ManageProductDash from './components/ManageProductDash.jsx';
 
 
 const router = createBrowserRouter([
@@ -35,6 +36,9 @@ const router = createBrowserRouter([
   },{
     path: "/manage-website",
     element: <ManageWebDash/>
+  },{
+    path: "/manage-products",
+    element: <ManageProductDash/>
   }
 ])
 

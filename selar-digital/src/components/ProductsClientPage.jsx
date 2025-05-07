@@ -1,9 +1,44 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { assets } from '../assets/assest'
 import { MdOutlineKeyboardDoubleArrowRight } from 'react-icons/md'
 import { motion } from "motion/react"; //eslint-disable-line
+import { FaExternalLinkAlt, FaWindowClose } from "react-icons/fa";
+import axios from 'axios';
+import toast from "react-hot-toast";
 
 const ProductsClientPage = () => {
+  const [depositModal, setDepositModal] = useState(false);
+  const [amount, setAmount] = useState(0);
+
+//const baseUrl = "http://localhost:8527";
+axios.defaults.withCredentials = true;
+const baseUrl = "/api";
+
+  const handlePurchase = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post(`${baseUrl}/sales/SalesOptimizer`,{
+        amount
+      }, {
+        withCredentials: true,
+      })
+
+      if (response.data.success) {
+        toast.success("Sales Optimizer Purchase Successful");
+        setDepositModal(false);
+      }
+    } catch (error) {
+      if (error.response) {
+        toast.error(error.response.data.message);  
+    } else if (error.request) {
+        toast.error("No response from server. Please check your network and try again.");
+    } else {
+        toast.error("An error occurred. Please try again later.");
+    }
+    }
+  }
+
   return (
     <div><main id="products">
     <div className="our-courses ml-18 mb-8">
@@ -34,7 +69,7 @@ const ProductsClientPage = () => {
 
          <div className="flex items-center">
              <img className="mr-4" src={assets.books} alt="" /> 
-              <p className="text-lg text-center font-bold">$3,000</p>
+              <p className="text-lg text-center font-bold">$300</p>
             </div> 
 
             {/* <div className="flex items-center mt-1">
@@ -70,7 +105,7 @@ const ProductsClientPage = () => {
 
           <div className="flex items-center">
               <img className="mr-4" src={assets.books} alt="" />
-              <p className="text-lg text-center font-bold">$1800</p>
+              <p className="text-lg text-center font-bold">$500</p>
             </div>
 {/* 
             <div className="flex items-center mt-1">
@@ -105,7 +140,7 @@ const ProductsClientPage = () => {
 
             <div className="flex items-center">
               <img className="mr-4" src={assets.books} alt="" />
-              <p className="text-lg text-center font-bold">$2,000</p>
+              <p className="text-lg text-center font-bold">$800</p>
             </div>
 
             {/* <div className="flex items-center mt-1">
@@ -140,7 +175,7 @@ const ProductsClientPage = () => {
 
             <div className="flex items-center">
               <img className="mr-4" src={assets.books} alt="" />
-              <p className="text-lg text-center font-bold">$1900</p>
+              <p className="text-lg text-center font-bold">$1000</p>
             </div>
 {/* 
             <div className="flex items-center mt-1">
@@ -167,13 +202,38 @@ const ProductsClientPage = () => {
       <span> Sales Optimizer</span>
     </div>
 
-        <div>
+        <div >
+          <div onClick={() => setDepositModal(true)}>
             <img src={assets.ai_bot} alt="" />
 
-            <p className='bg-[#FCEFCB] inline-block text-xl font-semibold px-3 py-2 rounded-xl mb-3'>Sales Optimizer Bot</p>
+            <p className='bg-[#FCEFCB] flex items-center text-xl font-semibold px-3 py-2 rounded-xl mb-3'>Sales Optimizer Bot <FaExternalLinkAlt size={15} className='ml-3' /></p>
+            </div>
             <p>Boost your sales Capacity with our optimized AI Bot</p>
         </div>
   </div>
+  
+     { depositModal && (
+       <div className="fixed inset-0 flex items-center justify-center bg-[#00000060] z-50">
+                <div className="bg-white rounded-xl shadow-lg">
+                  <div className="bg-[#998516] flex items-center justify-between p-4 rounded-t-lg">
+                    <p className="font-semibold text-lg">Purchase Sales Optimizer Bot</p>
+                    <div onClick={() => setDepositModal(false)}><FaWindowClose size={20} /></div>
+                  </div>
+                 
+                  <div className="mt-4 p-4">
+                  
+                   <form onSubmit={handlePurchase}>
+                    <div className="flex flex-col mb-3">
+                      <label>Enter Amount ($)</label>
+                      <input placeholder="$" value={amount} onChange={(e) => setAmount(e.target.value)} className="border-2 px-2 w-96  py-1 rounded-md mt-2 border-gray-400" type="number" />
+                    </div>
+
+                    <button type="submit" className="bg-[#998516] my-3 p-2 font-semibold rounded-2xl">Proceed to Payment</button>
+                   </form>
+                  </div>
+                </div>
+              </div>
+            )} 
   </div>
   )
 }

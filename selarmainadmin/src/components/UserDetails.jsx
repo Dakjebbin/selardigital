@@ -12,6 +12,7 @@ import { RxAvatar } from "react-icons/rx";
 import { useParams } from "react-router-dom";
 import { FaUsers } from "react-icons/fa6";
 import { TbWorldWww } from "react-icons/tb";
+import { AiFillProduct } from "react-icons/ai";
 
 const UserDetails = () => {
  
@@ -222,6 +223,11 @@ const UserDetails = () => {
       icons: <TbWorldWww size={30} />,
       label: "Manage Website",
       url: "/manage-website",
+    },
+    {
+      icons: <AiFillProduct size={30} />,
+      label: "Manage Products",
+      url: "/manage-products",
     },
     {
       icons: <FaAddressBook size={30} />,
@@ -486,34 +492,60 @@ const formatDate = (timestamp) => {
             </div>
         </div>
 
-        <div className="mt-14">
-          <p className="text-center font-playfair text-xl font-semibold">Transaction History</p>
+        <p className="text-center font-playfair text-xl font-semibold my-14">Transaction History</p>
 
-          <div className="bg-[#FFE6E4] mt-9">
-            <ol className="flex justify-between mx-2 sm:mx-9 font-playfair">
-              <li>Date</li>
-              <li>Status</li>
-              <li>Amount</li>
-              <li>Type</li>
-            </ol>
-          </div>
+        <div>
+          
 
-          <div>
-            {transaction.length === 0 ? (
-              <p>No Transaction Available</p>
-            ) : (
-              <div>
-                {transaction.map((transactions, index) => (
-                  <div key={index} className="flex justify-between mt-3 mx-2 sm:mx-9 font-playfair text-base sm:text-xl">
-                      <p className="mb-3"> {formatDate(transactions.createdAt)}</p>
-                      <p>{transactions.status}</p>
-                      <p>${transactions.amount}</p>
-                      <p>{transactions.type}</p>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
+        <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+  <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+    <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+      <tr>
+        <th scope="col" className="px-6 py-3">Date</th>
+        <th scope="col" className="px-6 py-3">Status</th>
+        <th scope="col" className="px-6 py-3">Amount</th>
+        <th scope="col" className="px-6 py-3">Type</th>
+        <th scope="col" className="px-6 py-3">POF</th>
+      </tr>
+    </thead>
+    <tbody>
+      {transaction.length === 0 ? (
+        <tr>
+          <td colSpan="5" className="px-6 py-4 text-center text-gray-500">
+            No Transaction Available
+          </td>
+        </tr>
+      ) : (
+        transaction.map((t, index) => (
+          <tr
+            key={index}
+            className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 border-gray-200"
+          >
+            <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+              {new Date(t.createdAt).toLocaleDateString()}
+            </td>
+            <td className="px-6 py-4">
+              {t.status || "N/A"}
+            </td>
+            <td className="px-6 py-4">
+              ${t.amount}
+            </td>
+            <td className="px-6 py-4">
+              {t.type}
+            </td>
+            <td className="px-6 py-4">
+              <a href={t.imageUrl || "#"} className="font-medium text-blue-600 dark:text-blue-500 hover:underline" target="_blank" rel="noreferrer">
+                {t.type === "Deposit" ? "View" : null}
+              </a>
+            </td>
+          </tr>
+        ))
+      )}
+    </tbody>
+  </table>
+</div>
+
+
         </div>
           </div>
         </>

@@ -10,6 +10,7 @@ import { useParams } from "react-router-dom";
 import { RxAvatar } from "react-icons/rx";
 import toast from "react-hot-toast";
 import { TbWorldWww } from "react-icons/tb";
+import { AiFillProduct } from "react-icons/ai";
 
 
 const FundUser = () => {
@@ -184,6 +185,11 @@ const FundUser = () => {
       icons: <TbWorldWww size={30} />,
       label: "Manage Website",
       url: "/manage-website",
+    },
+    {
+      icons: <AiFillProduct size={30} />,
+      label: "Manage Products",
+      url: "/manage-products",
     },
     {
       icons: <FaAddressBook size={30} />,

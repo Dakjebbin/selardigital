@@ -155,7 +155,7 @@ const Dashboard = () => {
         <div className="shadow-lg grow basis-[200px] shadow-black rounded-2xl px-5 py-5">
           <div className="flex items-center justify-between">
             <p className="text-xl font-semibold">Deposits</p>
-            <div onClick={() => setDepositModal(true)}>
+            <div >
             <CiCirclePlus size={20} />
              </div>
           </div>
@@ -175,7 +175,7 @@ const Dashboard = () => {
             <p className="text-xl font-semibold">Account Balance</p>
             <MdAccountBalanceWallet size={20} />
           </div>
-          <p className="mt-6 text-2xl"> ${((userData?.profit || 0) + (userData?.balance || 0)).toFixed(2)}.00</p>
+          <p className="mt-6 text-2xl"> ${((userData?.profit || 0) + (userData?.balance || 0)).toFixed(2)}</p>
         </div>
 
         <div className="shadow-lg grow basis-[200px] shadow-black rounded-2xl px-5 py-5">
@@ -265,39 +265,7 @@ const Dashboard = () => {
 <DonutChartCard/>
 <TeamProgressCard/>
 </div>
-{/* 
-     { depositModal && (
-       <div className="fixed inset-0 flex items-center justify-center bg-[#00000060] z-50">
-                <div className="bg-white rounded-xl shadow-lg">
-                  <div className="bg-[#998516] flex items-center justify-between p-4 rounded-t-lg">
-                    <p className="font-semibold text-lg">Deposit Funds</p>
-                    <div onClick={() => setDepositModal(false)}><FaWindowClose size={20} /></div>
-                  </div>
-                 
-                  <div className="mt-4 p-4">
-                  
-                   <form>
-                    <div className="flex flex-col mb-3">
-                      <label>Enter Amount ($)</label>
-                      <input placeholder="$" className="border-2 px-2 w-96  py-1 rounded-md mt-2 border-gray-400" type="number" />
-                    </div>
 
-                    <div className="flex flex-col">
-                      <label>Select Payment Method</label>
-                      <select className="border-2 px-2 w-96 py-1 rounded-md mt-2 border-gray-400" name="" id="">
-                        <option value="">Select Payment Method</option>
-                        <option value="Bitcoin">Bitcoin</option>
-                        <option value="Eth">Ethereum</option>
-                        <option value="USDT">USDT</option>
-                      </select>
-                    </div>
-
-                    <button className="bg-[#998516] my-3 p-2 font-semibold rounded-2xl">Proceed to Payment</button>
-                   </form>
-                  </div>
-                </div>
-              </div>
-            )} */}
     </div>
   );
 };

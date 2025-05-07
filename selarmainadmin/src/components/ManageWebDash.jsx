@@ -4,6 +4,7 @@ import { assets } from "../assets/assest";
 import { useAuthContext } from "../context/auth-context";
 import { MdDashboard } from "react-icons/md";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { AiFillProduct } from "react-icons/ai";
 import { FaBook, FaSpinner } from "react-icons/fa";
 import axios from "axios";
 import { MdOutlineMenuOpen } from "react-icons/md";
@@ -71,10 +72,16 @@ const ManageWebDash = () => {
       url: "/manage-website",
     },
     {
+      icons: <AiFillProduct size={30} />,
+      label: "Manage Products",
+      url: "/manage-products",
+    },
+    {
       icons: <FaAddressBook size={30} />,
       label: "KYC",
       url: "/kyc",
     },
+
     
    
   ];

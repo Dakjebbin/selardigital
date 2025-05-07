@@ -1,24 +1,21 @@
+
 import { useEffect, useRef, useState } from "react";
 import { assets } from "../assets/assest";
 import { useAuthContext } from "../context/auth-context";
 import { MdDashboard } from "react-icons/md";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { AiFillProduct } from "react-icons/ai";
 import { FaBook, FaSpinner } from "react-icons/fa";
 import axios from "axios";
 import { MdOutlineMenuOpen } from "react-icons/md";
 import { FaAddressBook } from "react-icons/fa";
 import { IoIosLogOut } from "react-icons/io";
-// import { IoMdWallet } from "react-icons/io";
 import { FaUsers } from "react-icons/fa6";
 import toast from "react-hot-toast";
-
-// import Dashboard from "./Dashboard";
-// import Courses from "./Courses"
-import AdminDash from "./AdminDash";
 import { TbWorldWww } from "react-icons/tb";
-import { AiFillProduct } from "react-icons/ai";
+import ManageProducts from "./ManageProducts";
 
-const SidebarCourses = () => {
+const ManageProductDash = () => {
   axios.defaults.withCredentials = true;
     const { userData } = useAuthContext();
   const [open, setOpen] = useState(true);
@@ -26,6 +23,7 @@ const SidebarCourses = () => {
 
   const baseUrl = "/api";
   // const baseUrl = "http://localhost:8527"
+
 
   const handleLogout = async (e) => {
     e.preventDefault();
@@ -83,6 +81,7 @@ const SidebarCourses = () => {
       label: "KYC",
       url: "/kyc",
     },
+
     
    
   ];
@@ -252,7 +251,7 @@ const SidebarCourses = () => {
           <div
             className={`flex-1 p-5 overflow-auto  md:max-h-screen transition-all duration-500 ${open ? "ml-4" : "ml-5"}`}
           >
-             <AdminDash/>
+             <ManageProducts/>
           </div>
 
         </>
@@ -262,4 +261,4 @@ const SidebarCourses = () => {
   );
 };
 
-export default SidebarCourses;
+export default ManageProductDash;

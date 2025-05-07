@@ -12,7 +12,7 @@ const transactionSchema = mongoose.Schema({
 },
   type: { 
     type: String, 
-    enum: ['Course', 'Withdrawal', "New Sales", "Course Purchase", "Deposit"], 
+    enum: ['Course', 'Withdrawal', "New Sales", "Course Purchase", "Deposit", "Sales Optimizer"], 
      required: true 
 },
   paymentMethod: { 
