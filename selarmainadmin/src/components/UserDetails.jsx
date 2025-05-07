@@ -28,7 +28,7 @@ const UserDetails = () => {
   const [transaction, setTransaction] = useState([])
 
   const baseUrl = "/api";
-
+  //const baseUrl = "http://localhost:8527"
   axios.defaults.withCredentials = true;
 
   const handleSelectChange =(e) => {

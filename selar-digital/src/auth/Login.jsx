@@ -48,21 +48,27 @@ const Login = () => {
                 toast.error("Login Failed");
             }
         } catch (error) {
-            if (error.response) {
-                if (error.response.status === 404) {
-                    toast.error(error.response); // Invalid credentials
-                  } else if (error.response.status === 409) {
-                    toast.error('Incorrect credentials or account issues'); // Conflict error (e.g., email already taken)
-                  } else if (error.response.status === 403) {
-                    // setPermissionError(true);
-                  } else {
-                    toast.error('An error occurred. Please try again later.'); // Generic error
-                  }
-                } else if (error.request) {
-                  toast.error('No response from server. Please check your internet connection.');
-                } else {
-                  toast.error('An unexpected error occurred.');
-                }
+          if (error.response) {
+            const status = error.response.status;
+            const message = error.response.data?.message || 'An error occurred';
+          
+            if (status === 404) {
+              toast.error(message)
+            } else if (status === 409) {
+              toast.error('Incorrect credentials or account issues');
+            } else if (status === 403) {
+             
+              toast.error('Access denied. Please contact admin.');
+             
+            } else {
+              toast.error(message);
+            }
+          } else if (error.request) {
+            toast.error('No response from server. Please check your internet connection.');
+          } else {
+            toast.error('An unexpected error occurred.');
+          }
+          
         } finally{
             setLoading(false);
         }

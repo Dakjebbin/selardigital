@@ -20,6 +20,7 @@ const FundUser = () => {
   const [loading, setLoading] = useState(true);
   const { Id } = useParams();
   const [amount, setAmount] = useState(0)
+  const [minusAmount, setMinusAmount] = useState(0);
   const [plan, setPlan] = useState('UBB')
   const [profit, setProfit] = useState(0);
 
@@ -39,8 +40,8 @@ const FundUser = () => {
 
       if (response.status === 200) {
         toast.success("Funding request sent successfully");
-        // setAmount(0)
-        // setPlan('')
+         setAmount(0)
+         setPlan('')
       }
   
     } catch (error) {
@@ -52,6 +53,31 @@ const FundUser = () => {
     }
     
   }
+
+  const handleMinusRequest = async (e) => {
+    e.preventDefault()
+
+  try {
+    const response = await axios.post(`${baseUrl}/userFund/minusfund/${Id}`,{
+      amount: minusAmount
+    },{
+        withCredentials: true
+    });
+
+    if (response.status === 200) {
+      toast.success("Minus request sent successfully");
+      setMinusAmount(0)
+    }
+
+  } catch (error) {
+    if (error instanceof axios.AxiosError) {
+      toast.error(error?.response?.data?.message || "Something went wrong" );
+  } else {
+      toast.error("Error fetching users: ", error.message);
+  }
+  }
+  
+}
 
 
   const handleProfitRequest = async (e) => {
@@ -345,7 +371,7 @@ const FundUser = () => {
               <option value="Savage Affiliates">Savage Affiliates</option>
             </select>
 
-            <div className="font-semibold text-xl mb-2 mt-9">Amount</div>
+            <div className="font-semibold text-xl mb-2 mt-9">Add Amount</div>
             <div>
               <input className="border-2 w-60 md:w-96 py-2 pl-2 font-semibold bg-[#D9D9D9]"
               placeholder="$"
@@ -354,9 +380,29 @@ const FundUser = () => {
               type="number" name="" id="" />
             </div>
 
+
                   <div className="mt-7 sm:ml-10 ml-5">
             <button 
-            className="bg-[#FFBBB8] px-8 py-2 rounded-lg font-semibold"
+            className="bg-[green] px-8 py-2 rounded-lg font-semibold"
+            type="submit" >Submit</button>
+            </div>
+            </form>
+
+
+            <form onSubmit={handleMinusRequest}>
+              
+            <div className="font-semibold text-xl mb-2 mt-9">Minus Amount</div>
+            <div>
+              <input className="border-2 w-60 md:w-96 py-2 pl-2 font-semibold bg-[#D9D9D9]"
+              placeholder="$"
+              value={minusAmount}
+              onChange={(e) => setMinusAmount(e.target.value)}
+              type="number" name="" id="" />
+            </div>
+
+            <div className="mt-7 sm:ml-10 ml-5">
+            <button 
+            className="bg-[red] px-8 py-2 rounded-lg font-semibold"
             type="submit" >Submit</button>
             </div>
             </form>

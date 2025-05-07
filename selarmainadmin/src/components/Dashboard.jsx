@@ -28,36 +28,7 @@ const Dashboard = () => {
 
   axios.defaults.withCredentials = true;
 
-  //   const handleSelectChange =(e) => {
-  //     setIsApproved(e.target.value)
-  //   }
-
-  //   const handleApprovedStatus = async () => {
-  //     try {
-  //         const response = await axios.patch(`${baseUrl}/auth/approvedStatus/${Id}`,
-  //             { isApproved },
-  //             {
-  //             withCredentials: true,
-  //         })
-
-  //         if (response.status === 201) {
-  //           toast.success("User's Approval status has been updated");
-
-  //         }
-
-  //         setUserDetails((prevDetails) => ({
-  //           ...prevDetails,
-  //           isApproved: isApproved, // Update only the approval status
-  //         }));
-
-  //     } catch (error) {
-  //         if (error instanceof axios.AxiosError) {
-  //             toast.error(error?.response?.data);
-  //         } else {
-  //             toast.error("Error fetching users: ", error.message);
-  //         }
-  //     }
-  //   }
+  
 
   // const handleStatusUpdate = async () => {
 

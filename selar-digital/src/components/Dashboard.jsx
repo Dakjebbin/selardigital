@@ -183,7 +183,7 @@ const Dashboard = () => {
             <p className="text-xl font-semibold">Bonus</p>
             <FaMoneyBillTrendUp size={20} />
           </div>
-          <p className="mt-6 text-2xl">${userData.profit}.00</p>
+          <p className="mt-6 text-2xl">$0.00</p>
         </div>
 
         <div className="shadow-lg grow basis-[200px] shadow-black rounded-2xl px-5 py-5">
@@ -191,7 +191,7 @@ const Dashboard = () => {
             <p className="text-xl font-semibold">Total Withdrawals</p>
             <PiHandWithdrawFill size={20} />
           </div>
-          <p className="mt-6 text-2xl">${userData.profit}.00</p>
+          <p className="mt-6 text-2xl">$0.00</p>
         </div>
 
         <div className="shadow-lg grow basis-[200px] shadow-black rounded-2xl px-5 py-5">
@@ -199,7 +199,7 @@ const Dashboard = () => {
             <p className="text-xl font-semibold">Referral Bonus</p>
             <VscReferences size={20} />
           </div>
-          <p className="mt-6 text-2xl">${userData.profit}.00</p>
+          <p className="mt-6 text-2xl">$0.00</p>
         </div>
 
       </div>

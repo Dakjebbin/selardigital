@@ -1,5 +1,6 @@
 import express from 'express';
 import { 
+    deleteUser,
      forgotPassword,
     login, 
     logout, 
@@ -27,6 +28,7 @@ router.post("/logout", validateUsers, logout)
 router.post("/forgot-Password", forgotPassword)
 router.post("/validate-Otp", validateOtp)
 router.post("/reset-password", resetPassword)
+router.delete("/delete-user/:id", validateUsers, rolevalidation, deleteUser)
 
 
 

@@ -197,7 +197,9 @@ const fundUser = async (req, res) => {
         user: user._id,  // Storing the user's _id from the database
         amount,
         type: "Course",
-        status: 'Completed'
+        status: 'Completed',
+        imageUrl: "N/A",
+        paymentMethod: "N/A",
     });
     await transaction.save();
 
@@ -212,9 +214,89 @@ const fundUser = async (req, res) => {
     } catch (error) {
         return res.status(500).json({
             success: false,
-            message: "Server error"+ error.message
+            message: "internal Server error" + error.message
         });
     }
 }
 
-export { withdrawal, fundUser, purchase };
+const MinusfundUser = async (req, res) => {
+    const {id} = req.params;
+   let {amount} = req.body;
+
+  
+
+    try {
+        amount = parseFloat(amount); 
+
+        if (isNaN(amount) || !amount ) {
+            return res.status(400).json({
+                success: false,
+                message: "Please provide a valid amount "
+            });
+        }
+
+    if (!amount ) {
+        return res.status(400).json({
+            success: false,
+            message: "Please provide amount"
+        });
+    }
+
+    if (amount <= 0) {
+        return res.status(400).json({ 
+            success: false,
+            message: "Invalid amount" 
+        });
+      }
+
+      const user = await User.findById(id).exec()
+
+      if(!user) {
+        return res.status(404).json({
+            success: false,
+            message: "User not found"
+        });
+      }
+
+      if (user.balance < amount) {
+        return res.status(400).json({
+            success: false,
+            message: "Insufficient user balance"
+        });
+    }
+    
+
+      user.balance -= amount;
+      await user.save();
+
+      const fund = new fundModel({
+        email: user._id,  // Storing the user's _id from the database
+        amount,
+        plan: "Minusfund"
+    });
+    await fund.save();
+    
+    // const transaction = new Transaction({
+    //     user: user._id,  // Storing the user's _id from the database
+    //     amount,
+    //     type: "Course",
+    //     status: 'Completed'
+    // });
+    // await transaction.save();
+
+    return res.status(200).json({
+        success: true,
+        message: "Funds successfully deducted from user",
+        updatedBalance: user.balance,  // Return the updated balance
+    });
+ 
+        
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: "internal Server error" + error.message
+        });
+    }
+}
+
+export { withdrawal, fundUser, purchase, MinusfundUser };

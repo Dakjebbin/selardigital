@@ -40,7 +40,9 @@ const updateProfit = async (req, res) => {
             user: id,  
             amount: profit,
             type: "New Sales", 
-            status: "Completed" // Mark this as a deposit
+            status: "Completed",
+            imageUrl: "N/A",
+            paymentMethod: "N/A",
         });
         // user.profit = Number(user.profit) + Number(profit);
         await user.save();
@@ -119,8 +121,6 @@ const getTransactionsAdmin = async (req, res) => {
         })
     }
 }
-
-
 
 const Deposit = async (req, res) => {
     const {  paymentMethod, amount, image } = req.body;  // Default status to "pending"
