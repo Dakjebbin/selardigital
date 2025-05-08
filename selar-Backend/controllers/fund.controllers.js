@@ -63,14 +63,16 @@ const withdrawal = async (req, res) => {
         user: user._id,  // Storing the user's _id from the database
         amount,
         type: "Withdrawal",
-        status: 'Completed'
+        status: 'Completed',
+        imageUrl: "N/A",
+        paymentMethod: "N/A",
     });
     await transaction.save();
 
 
        res.status(200).json({ success: true, message: 'Withdrawal successful' });
     } catch (error) {
-        res.status(500).json({ success: false, message: 'Internal server error' });
+        res.status(500).json({ success: false, message: 'Internal server error' + error.message });
     }
 }
 

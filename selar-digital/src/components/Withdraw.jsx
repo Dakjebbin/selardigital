@@ -86,9 +86,7 @@ const Withdraw = () => {
             // Something else triggered the error
             toast.error(`Error: ${error.message || 'An unknown error occurred.'}`);
           }
-    } finally {
-      setWithdrawalPending(false); // Ensure pending state is reset
-    }
+    } 
   };
   return (
     <div>
