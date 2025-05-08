@@ -79,7 +79,23 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <AuthContextProvider>
       <RouterProvider router={router} />
- <Toaster />
+ <Toaster
+   position="top-center"
+   toastOptions={{
+     style: {
+       fontSize: '18px',
+       padding: '25px 34px',
+       maxWidth: '500px',
+     },
+   }}
+   containerStyle={{
+     top: '50%',
+     left: '50%',
+     transform: 'translate(-50%, -50%)',
+     position: 'fixed',
+     zIndex: 9999,
+   }}
+ />
  </AuthContextProvider>
   </StrictMode>,
 )
