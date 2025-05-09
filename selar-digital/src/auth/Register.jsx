@@ -17,7 +17,7 @@ const Register = () => {
   const [loading, setLoading] = useState(false);
 
   const baseUrl = "/api";
-  const Navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -46,8 +46,23 @@ const Register = () => {
 
       if (response.status === 201) {
         toast.success("Registered Successfully");
+        // if (typeof window.$smartsupp === "function") {
+        //   window.$smartsupp('user', {
+        //     name: fullname,
+        //     email: email,
+        //   });
+  
+        //   window.$smartsupp('variables', {
+        //     signedUp: 'true',
+        //     username: username,
+        //     phone: phonenumber,
+        //   });
+        // }else{
+        //   console.warn("Smartsupp is not available or not a function");
+        // }
       } else {
         toast.error("Registration Failed");
+        
       }
       setFullname("");
       setUsername("");
@@ -55,17 +70,34 @@ const Register = () => {
       setPhoneNumber("");
       setPassword("");
 
-      Navigate("/login");
-    } catch (error) {
-      if (error instanceof axios.AxiosError) {
-        toast.error(error?.response?.data);
+      navigate("/login");
+    } catch ( error) {
+      if (error.response) {
+        const status = error.response.status;
+        const message = error.response.data?.message || 'An error occurred';
+      
+        if (status === 404) {
+          toast.error(message)
+        } else if (status === 409) {
+          toast.error(message);
+        } else if (status === 403) {
+          toast.error('Access denied. Please contact admin.');
+        } else {
+          toast.error(message);
+        }
+      } else if (error.request) {
+        toast.error('No response from server. Please check your internet connection.');
       } else {
-        toast.error("reg error => ", error);
+        toast.error('An unexpected error occurred.');
       }
+     
+      
     } finally {
       setLoading(false);
     }
   };
+
+  
 
   return (
     <section className="w-[95%] m-auto">
@@ -147,7 +179,7 @@ const Register = () => {
                 type="text"
                 required
                 name=""
-                id=""
+                id="fullname"
               />
 
               <label className="text-lg mb-1">Username </label>
@@ -158,7 +190,7 @@ const Register = () => {
                 type="text"
                 required
                 name=""
-                id=""
+                id="username"
               />
 
               <label className="text-lg mb-1">Email </label>
@@ -169,7 +201,7 @@ const Register = () => {
                 type="email"
                 required
                 name=""
-                id=""
+                id="email"
               />
 
               <label className="text-lg mb-1">PhoneNumber </label>
@@ -180,7 +212,7 @@ const Register = () => {
                 type="number"
                 required
                 name=""
-                id=""
+                id="phonenumber"
               />
 
               <label className="text-lg mb-1"> Password </label>
