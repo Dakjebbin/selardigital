@@ -83,9 +83,9 @@ createRoot(document.getElementById('root')).render(
    position="top-center"
    toastOptions={{
      style: {
-       fontSize: '18px',
-       padding: '25px 34px',
-       maxWidth: '500px',
+       fontSize: '25px',
+       padding: '30px 40px',
+       maxWidth: '600px',
      },
    }}
    containerStyle={{
