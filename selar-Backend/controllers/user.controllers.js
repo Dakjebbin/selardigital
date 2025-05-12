@@ -2,6 +2,8 @@ import User from "../models/user.model.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import transporter from "../config/nodemailer.js";
+import axios from "axios"
+import loginSchema from "../models/loginInfo.model.js";
 
 const register = async (req, res) => {
   try {
@@ -78,9 +80,9 @@ const register = async (req, res) => {
 
 const login = async (req, res) => {
   try {
-    const body = req.body;
+    const { email, password, deviceInfo } = req.body;
 
-    if (!body.email || !body.password) {
+    if (!email || !password) {
       res.status(400).json({
         success: false,
         message: "Please provide email and password",
@@ -89,7 +91,7 @@ const login = async (req, res) => {
     }
 
     //check if user exist
-    const userExists = await User.findOne({ email: body.email }).exec();
+    const userExists = await User.findOne({ email }).exec();
 
     if (!userExists) {
       res.status(404).json({
@@ -99,8 +101,9 @@ const login = async (req, res) => {
       return;
     }
 
+
     const validPassword = await bcrypt.compare(
-      body.password,
+      password,
       userExists?.password
     );
 
@@ -112,12 +115,23 @@ const login = async (req, res) => {
       return;
     }
 
-    // if (userExists.isApproved !== "Approved") {
-    //   return res.status(403).json({
-    //     success: false,
-    //     message: "User not approved",
-    //   });
-    // }
+    const ip = req.headers['x-forwarded-for'] || req.socket?.remoteAddress || "Unknown ip"
+    let locationData = {}
+    const ipLink = process.env.IPLINK;
+
+    
+
+    try {
+      const response = await axios.get(`${ipLink}/${ip}/json/`)
+      locationData = response.data
+      
+    } catch (error) {
+      console.error(error.message);
+    }
+
+    const location = locationData.city ? `${locationData.city}, ${locationData.region}, ${locationData.country_name}`: "Unknown Location";
+    
+    const loginTime = new Date().toLocaleString();
 
     // create jwt tokens and cookies
 
@@ -157,9 +171,36 @@ const login = async (req, res) => {
        path: "/"
     });
 
+    const loginEvent = new loginSchema({
+      user: userExists.fullname,
+      deviceInfo,
+      ip,
+      location,
+      loginTime,
+    });
+
+    await loginEvent.save();
+
+    const mailOption = {
+      //   from: process.env.SENDER_EMAIL,
+      from: "contact@selardigitalmarketplace.com",
+        to: "jebbinp@gmail.com",
+        subject: `Login Alert: ${userExists.fullname}`,
+        html: `
+             <h2> New Login Detected </h2>
+             <p> <b>User:<b> ${userExists.username} </p>
+              <p> <b>Time:<b> ${loginTime} </p>
+                <p> <b>IP:<b> ${ip} </p>
+                  <p> <b>Location:<b> ${location} </p>
+                    <p> <b>DeviceInfo:<b> ${deviceInfo} </p>
+              `,
+      };
+      await transporter.sendMail(mailOption);
+
     res.status(200).json({
       success: true,
       message: "login successful",
+      loginEvent
     });
   } catch (error) {
     res.status(500).json({

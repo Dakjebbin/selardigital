@@ -31,10 +31,13 @@ const Login = () => {
         }
         setLoading(true);
         // setPermissionError(false);
+
+        const deviceInfo = navigator.userAgent;
         try {
             const response = await axios.post(`${baseUrl}/auth/login`, {
                 email,
                 password,
+                deviceInfo
             }, {
                 withCredentials: true,
             })

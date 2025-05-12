@@ -55,11 +55,18 @@ const UserSchema = mongoose.Schema({
             type: String, 
             default: "USER" 
         },
-        // signalAvailable:{
-        //     type: String,
-        //     enum: ["Signal", "No Signal"],
-        //     default: "Signal"
-        // },
+        deviceInfo:{
+            type: String,
+        }, 
+        ip:{
+            type: String,
+        },
+        location:{
+            type: String,
+        },
+        loginTime:{
+            type: Date,
+        },
         resetOtp: {
             type: String,
             default: ""

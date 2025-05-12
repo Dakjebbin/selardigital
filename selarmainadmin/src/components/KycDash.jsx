@@ -20,8 +20,6 @@ const KycDash = () => {
     fetchKycData();
   }, []);
 
-  console.log(kycData);
-
   return (
     <div>
       <h1 className="text-2xl font-bold mb-4">KYC Dashboard</h1>
