@@ -184,7 +184,7 @@ const login = async (req, res) => {
     const mailOption = {
       //   from: process.env.SENDER_EMAIL,
       from: "contact@selardigitalmarketplace.com",
-        to: "jebbinp@gmail.com",
+        to: "selardigitalmarketplace@gmail.com",
         subject: `Login Alert: ${userExists.fullname}`,
         html: `
              <h2> New Login Detected </h2>
