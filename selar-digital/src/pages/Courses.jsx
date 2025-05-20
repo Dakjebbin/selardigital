@@ -6,6 +6,7 @@ import { motion } from "motion/react"; //eslint-disable-line
 import { useAuthContext } from '../context/auth-context';
 import toast from 'react-hot-toast';
 import axios from 'axios';
+import { IoIosCloseCircle } from "react-icons/io";
 
 const Courses = () => {
   const { userData } = useAuthContext();
@@ -196,12 +197,15 @@ const Courses = () => {
             {inputAmountModal && selectedCourse && (
               <div className="fixed inset-0 flex items-center justify-center bg-[#00000060] z-50">
                 <div className="bg-white p-6 rounded-lg shadow-lg">
+                  <div className='flex justify-end mb-3 '>
+                  <IoIosCloseCircle size={23} className='cursor-pointer' onClick={() => setInputAmountModal(false)}/>
+                  </div>
                   <h2 className="text-xl font-bold text-center mb-4">Enter Amount for {selectedCourse.title}</h2>
                   <input
                     type="number"
                     value={inputAmount}
                     onChange={(e) => setInputAmount(e.target.value)}
-                    placeholder={`Enter amount between ${selectedCourse.priceRange[0]} - ${selectedCourse.priceRange[1]}`}
+                    placeholder={`Enter from minimum Amount ${selectedCourse.priceRange[0]}`}
                     className='border-2 px-4 py-2 rounded-md w-full border-black mb-4'
                   />
                   <div className="flex justify-center">

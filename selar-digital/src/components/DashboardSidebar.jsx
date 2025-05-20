@@ -26,6 +26,7 @@ const Sidebar = () => {
   const [loggingOut, setLoggingOut] = useState(false);
 
   const baseUrl = "/api";
+  //const baseUrl = "http://localhost:8527";
 
   const handleLogout = async (e) => {
     e.preventDefault();
