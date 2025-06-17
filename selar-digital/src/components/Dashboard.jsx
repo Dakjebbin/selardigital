@@ -154,7 +154,7 @@ const Dashboard = () => {
       <div className="flex flex-wrap justify-between m-auto md:w-[90%] w-full gap-10  mt-10 ">
         <div className="shadow-lg grow basis-[200px] shadow-black rounded-2xl px-5 py-5">
           <div className="flex items-center justify-between">
-            <p className="text-xl font-semibold">Deposits</p>
+            <p className="text-xl font-semibold">Main Account</p>
             <div >
             <CiCirclePlus size={20} />
              </div>

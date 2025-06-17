@@ -87,7 +87,7 @@ const purchase = async (req, res) => {
      if (!amount || amount <= 0) {
         return res.status(400).json({ 
             success:false,
-            message: 'Invalid amount okay oh' 
+            message: 'Invalid amount' 
         });
      }
 
