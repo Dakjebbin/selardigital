@@ -45,7 +45,7 @@ const PinModal = ({ setShowModal, onPinVerified }) => {
         className="bg-white p-6 rounded-lg shadow-lg w-80"
       >
         <button
-          className=" text-xl text-gray-500"
+          className=" text-2xl bg-red-400 px-2 py-2 rounded-full text-gray-500"
           onClick={() => setShowModal(false)} // Close modal manually on close button click
         >
           &times;
