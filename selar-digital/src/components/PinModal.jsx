@@ -39,7 +39,7 @@ const PinModal = ({ setShowModal, onPinVerified }) => {
   };
 
   return (
-    <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50">
+    <div className="fixed inset-0 flex justify-center items-center bg-transparent bg-opacity-50">
       <div 
         ref={modalRef} 
         className="bg-white p-6 rounded-lg shadow-lg w-80"
