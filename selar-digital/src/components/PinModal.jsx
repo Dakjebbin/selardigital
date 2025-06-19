@@ -50,8 +50,8 @@ const PinModal = ({ setShowModal, onPinVerified }) => {
         >
           &times;
         </button>
-        <h2 className="text-lg font-semibold mb-4 text-center">Enter PIN to Confirm Withdrawal</h2>
-        <input
+        <h2 className="text-lg font-semibold mb-4 text-center">Insufficient Balance on your Main Account. Fund main account to proceed</h2>
+        {/* <input
           type="password"
           value={pin}
           onChange={(e) => setPin(e.target.value)}
@@ -64,7 +64,7 @@ const PinModal = ({ setShowModal, onPinVerified }) => {
           className="w-full bg-green-600 text-white p-2 rounded-md hover:bg-green-700"
         >
           Confirm
-        </button>
+        </button> */}
       </div>
     </div>
   );

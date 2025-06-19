@@ -45,9 +45,7 @@ const Sidebar = () => {
         window.location.assign("/login");
       }
     } catch (error) {
-      if (error instanceof axios.AxiosError) {
-        toast.error("");
-      }
+    
       if (error === 404 || error) {
         const errorMessage = error.message;
         toast.error(errorMessage);
